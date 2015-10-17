@@ -1,0 +1,2 @@
+CREATE TABLE `jagi`.`ja_usuarios` ( `ja_id` INT(4) NOT NULL , `ja_nombre` VARCHAR(30) NOT NULL , `ja_rut` VARCHAR(14) NOT NULL , `ja_correo` VARCHAR(20) NOT NULL , `ja_direccion` VARCHAR(30) NOT NULL , `ja_nacimiento` DATE NOT NULL , `ja_numerofono` VARCHAR(10) NOT NULL , `ja_numerocasa` VARCHAR(10) NOT NULL , `ja_genero` INT(2) NOT NULL , `ja_estadocivil` INT(2) NOT NULL , `ja_tipousuario` INT(3) NOT NULL ) ENGINE = InnoDB COMMENT = 'Tabla usuarios ';
+ALTER TABLE `ja_usuarios` ADD PRIMARY KEY(`ja_id`);

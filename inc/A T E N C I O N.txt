@@ -1,0 +1,1 @@
+Al modificar cualquier archivo de la carpeta INC debe ser incluido en las demas carpetas INC que estan en todo management

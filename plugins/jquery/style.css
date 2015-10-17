@@ -1,0 +1,137 @@
+html, body, div, ul {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+    color: #262626;
+	background: #f4f4f4;
+	font: normal 12px/18px Verdana, sans-serif;
+}
+
+#content {
+	width: 400px;
+	margin: 40px auto 0 auto;
+	padding: 0 60px 30px 60px;
+	border: solid 1px #cbcbcb;
+	background: #fafafa;
+	-moz-box-shadow: 0px 0px 10px #cbcbcb;
+	-webkit-box-shadow: 0px 0px 10px #cbcbcb;
+}
+
+h1 {
+	margin: 30px 0 15px 0;
+	font-size: 30px;
+	font-weight: bold;
+	font-family: Arial;
+}
+
+h1 span {
+	font-size: 50%;
+	letter-spacing: -0.05em;
+}
+
+hr {
+	border: none;
+	height: 1px; line-height: 1px;
+	background: #E5E5E5;
+	margin-bottom: 20px;
+	padding: 0;
+}
+
+p {
+	margin: 0;
+	padding: 7px 0;
+}
+
+a {
+	outline: none;
+}
+
+a img {
+	border: 1px solid #BBB;
+	padding: 2px;
+	margin: 10px 20px 10px 0;
+	vertical-align: top;
+}
+
+a img.last {
+	margin-right: 0;	
+}
+
+ul {
+	margin-bottom: 24px;
+	padding-left: 30px;
+}
+
+section#trabajos {
+	background: #011E30;
+		border-radius: .5em;
+		margin: 0 auto;
+		max-width: 80%;
+		padding: .5em;
+		text-align: center;
+}
+.fade{
+	opacity: 1;
+	filter:alpha(opacity=10);
+		-ms-transition all 0.5s ease-in;
+		-moz-transition: all 0.5s ease-in;
+		-o-transition: all 0.5s ease-in;
+		-webkit-transition: all 0.5s ease-in;
+		transition: all 0.5s ease-in;	
+}
+.fade:hover{
+	opacity: 0.7;
+	filter:alpha(opacity=7);
+			-ms-transition all 0.5s ease-out;
+		-moz-transition: all 0.5s ease-out;
+		-o-transition: all 0.5s ease-out;
+		-webkit-transition: all 0.5s ease-out;
+		transition: all 0.5s ease-out;	
+}
+.redonda {
+	border-radius: 3.125em; 			/* 50px/16 */
+	box-shadow: 5px 5px 10px rgba(255,255,255,.3);
+}
+div.portafolio {
+	margin: 2em auto;
+}
+div.portafolio article{
+	display: inline;
+	padding: 1em;
+}
+
+@media screen and (min-width: 1081px){
+	header h1{
+		text-align: left;
+		width: 35%;
+	}
+	nav {
+		text-align: right;
+		width: 60%;
+	}
+}
+@media screen and (min-width: 1080px){
+	nav li{
+		font-size:  1.3em;
+	}
+	article#galeria-inicio {
+		width: 90%;		
+	}
+	aside {
+		width: 20%;		
+	}
+	article#descripcion-acerca, article#multimedia-acerca, #img-se {
+		width: 45%;		
+	}	
+	article#servicio1, article#servicio2, article#servicio3 {
+		width: 30%;		
+	}	
+	section#trabajos {
+		max-width: 90%;
+	}
+	div.portafolio article{
+		padding: .5em;
+	}
+}

@@ -1,0 +1,387 @@
+html, body, div, ul {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+    color: #262626;
+	background: #f4f4f4;
+    background-image: url("img/19.jpg");
+    background-repeat: repeat;	
+	font: normal 12px/18px 'Century Gothic', 'Century Gothic';
+	text-align: center;
+}
+#content {
+	width: 96%;
+	margin: 1px auto 0 auto;
+	padding: 10px 20px 30px 20px;
+	border: solid 1px #cbcbcb;
+	border-radius: 2px;
+	background: #fafafa;
+	-moz-box-shadow: 0px 0px 10px #cbcbcb;
+	-webkit-box-shadow: 0px 0px 10px #cbcbcb;
+}
+#contento {
+  position: fixed;
+  /*top: 0px; /* Distancia desde arriba */
+  bottom: 98%; /* Distancia desde abajo */
+  /*right: 30px; /* Distancia desde la derecha */
+  left: 29%; /* Destancia desde la izquierda */
+
+	height:0%;
+	width: 30%;
+	text-align: right;	
+	margin: 0px auto 0 auto;
+	padding: 0px 0px 0px 0px;
+	border: solid 0px #cbcbcb;
+	z-index: 1100;
+	border-radius: 2px;
+	background: #fafafa;
+	-moz-box-shadow: 0px 0px 10px #cbcbcb;
+	-webkit-box-shadow: 0px 0px 10px #cbcbcb;
+}
+@media (max-width: 1200px) {
+  #contento {
+    left: 18%;
+    width: 20%
+  }
+}
+@media (max-width: 750px) {
+  #contento {
+    left: 26%;
+    width: 45%
+  }
+}
+@media (max-width: 600px) {
+  #contento {
+    left: 35%;
+    width: 45%
+  }
+}
+
+#contentIn {
+	width: 96%;
+	margin: 1px auto 0 auto;
+	padding: 10px 15px 10px 15px;
+	/*padding: 0 60px 30px 60px;*/
+	border: solid 1px #cbcbcb;
+	border-radius: 2px;
+	background: #fafafa;
+	-moz-box-shadow: 0px 0px 10px #cbcbcb;
+	-webkit-box-shadow: 0px 2px 10px #cbcbcb;
+}
+
+	@media (min-width: 768px) {
+	  #contentIn {
+	    width: 85%;
+	  }
+	}
+	@media (min-width: 880px) {
+	  #contentIn {
+	    width: 80%;
+	  }
+	}
+	@media (min-width: 992px) {
+	  #contentIn {
+	    width: 75%;
+	  }
+	}
+	@media (min-width: 1096px) {
+	  #contentIn {
+	    width: 70%;
+	  }
+	}
+	@media (min-width: 1200px) {
+	  #contentIn {
+	    width: 60%; /*a escala , old : 1200x1170*/
+
+	  }
+	}
+
+h1 {
+	margin: 30px 0 15px 0;
+	font-size: 30px;
+	font-weight: bold;
+	font-family: 'Century Gothic';
+}
+
+h1 span {
+	font-size: 50%;
+	letter-spacing: -0.05em;
+}
+
+hr {
+	border: none;
+	height: 1px; line-height: 1px;
+	background: #E5E5E5;
+	margin-bottom: 20px;
+	padding: 0;
+}
+
+p {
+	margin: 0;
+	padding: 7px 0;
+}
+
+a {
+	outline: none;
+}
+
+
+
+ul {
+	margin-bottom: 24px;
+	padding-left: 30px;
+}
+/*Fuentes*/
+.fuentesInfo {
+	font-family: 'Raleway', sans-serif;
+	font-size: 1.2em; 
+
+}
+/* Boton ir arriba */
+#IrArriba {
+position: fixed;
+bottom: 60px; /* Distancia desde abajo */
+right: 30px; /* Distancia desde la derecha */
+}
+#IrAbajo{
+position: fixed;
+bottom: 60px; /* Distancia desde abajo */
+left: 30px; /* Distancia desde la derecha */
+}
+#IrArriba span {
+width: 34px; /* Ancho del botón */
+height: 34px; /* Alto del botón */
+display: block;
+/*background:url(glyphicon glyphicon-arrow-up) no-repeat top center;*/
+}
+#IrAbajo span {
+width: 34px; /* Ancho del botón */
+height: 34px; /* Alto del botón */
+display: block;
+/*background:url(glyphicon glyphicon-arrow-up) no-repeat top center;*/
+}
+#IrArriba span:hover {
+width: 34px; /* Ancho del botón */
+height: 34px; /* Alto del botón */
+display: block;
+/*background:url(glyphicon glyphicon-arrow-up) no-repeat bottom center;*/
+}
+#IrAbajo span:hover {
+width: 34px; /* Ancho del botón */
+height: 34px; /* Alto del botón */
+display: block;
+/*background:url(glyphicon glyphicon-arrow-up) no-repeat bottom center;*/
+}
+/* /Boton ir arriba */
+
+/* esto es un reset para css (*todo)
+*{
+	margin:0px;
+	padding: 0px;
+	color: white;
+	font-family: arial;
+}
+*/
+div#terreno{
+	width: 500px; height: 250px; background-image: url(../img/otras/terreno.jpg); border-radius: 5px; margin: 10px;
+}
+div#casa{
+	width: 500px; height: 250px; background-image: url(../img/otras/casa.jpg); border-radius: 5px; margin: 10px; 
+}
+
+div#departamento{
+	width: 500px; height: 250px; background-image: url(../img/otras/departamento.jpg); border-radius: 5px; margin: 10px;
+}
+
+div#usuarios{
+	width: 500px; height: 250px; background-image: url(../img/otras/usuarios.jpg); border-radius: 5px; margin: 10px;
+}
+
+div#perfil{
+	width: 500px; height: 250px; background-image: url(../img/otras/perfil.jpg); border-radius: 5px; margin: 10px;
+}
+div#cerrarsesion{
+	width: 500px; height: 250px; background-image: url(../img/otras/cerrarsesion.jpg); border-radius: 5px; margin: 10px;
+}
+
+div#info{
+	position: absolute; overflow: hidden; width: 500px; height: 250px; background-color: rgba(31, 31, 31 , 0.9); -webkit-transition: opacity 0.2s; opacity: 2;
+}
+div#terreno:hover div#info{
+	opacity: 0.2;
+}
+div#casa:hover div#info{
+	opacity: 0.2;
+}
+div#departamento:hover div#info{
+	opacity: 0.2;
+}
+div#usuarios:hover div#info{
+	opacity: 0.2;
+}
+div#perfil:hover div#info{
+	opacity: 0.2;
+}
+div#cerrarsesion:hover div#info{
+	opacity: 0.2;
+}
+p#headline{
+	position: absolute; margin-top: 20px; -webkit-transition: margin 0.2s; margin-left: 110px; font-size: 30px; color: white; text-align: center;
+}
+div#terreno:hover p#headline{
+	margin-left: 90px;
+}
+div#casa:hover p#headline{
+	margin-left: 90px;
+}
+div#departamento:hover p#headline{
+	margin-left: 90px;
+}
+div#usuarios:hover p#headline{
+	margin-left: 90px;
+}
+div#perfil:hover p#headline{
+	margin-left: 90px;
+}
+div#cerrarsesion:hover p#headline{
+	margin-left: 70px;
+}
+p#pie {
+	margin: auto; width: 250px; text-align: center; -webkit-transition: 0.3s; color: white; font-size: 18px; margin-top: 160px;
+}
+div#terreno:hover p#pie{ /*este es para el movimiento vertical*/
+	margin-top: 115px;
+}
+div#casa:hover p#pie{
+	margin-top: 130px;
+}
+div#departamento:hover p#pie{
+	margin-top: 130px;
+}
+div#usuarios:hover p#pie{
+	margin-top: 115px;
+}
+div#perfil:hover p#pie{
+	margin-top: 210px;
+}
+div#cerrarsesion:hover p#pie{
+	margin-top: 115px;
+}
+.horizontal{
+	display: flex; 
+	justify-content: center;
+}
+.vertical{
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+	padding-top: 50px; 
+	padding-bottom: 40px;
+}
+.derecha{
+	justify-content: right;
+}
+
+html, body {
+	height: 100%;
+}
+.divPadre {
+	height: 100%;
+}
+
+@media screen and (max-width: 600px){
+	div#terreno{
+		width: 225px; height: 112px; background-image: url(../img/otras/terreno1.jpg); border-radius: 5px; margin: 10px;
+	}
+	div#casa{
+		width: 225px; height: 112px; background-image: url(../img/otras/casa1.jpg); border-radius: 5px; margin: 10px; 
+	}
+
+	div#departamento{
+		width: 225px; height: 112px; background-image: url(../img/otras/departamento1.jpg); border-radius: 5px; margin: 10px;
+	}
+
+	div#usuarios{
+		width: 225px; height: 112px; background-image: url(../img/otras/usuarios1.jpg); border-radius: 5px; margin: 10px;
+	}	
+	div#perfil{
+		width: 225px; height: 112px; background-image: url(../img/otras/perfil1.jpg); border-radius: 5px; margin: 10px;
+	}	
+	div#cerrarsesion{
+		width: 225px; height: 112px; background-image: url(../img/otras/cerrarsesion1.jpg); border-radius: 5px; margin: 10px;
+	}
+	div#info{
+		position: absolute; overflow: hidden; width: 225px; height: 112px; background-color: rgba(31, 31, 31 , 0.9); -webkit-transition: opacity 0.2s; opacity: 2;		
+	}	
+	p#headline{
+		font-size: 15px;
+	}
+	p#pie {
+		font-size: 9px;
+	}	
+}
+
+/* css para diseño del login*/
+
+#formulario {
+	background-color: #FFF;
+	padding: 10px;
+	height: 140px;
+	width: 300px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	border: 2px solid #900;
+
+
+
+	border.radius: 10px;  /* Estandar CSS3 */
+	-moz-border-radius:10px;  /* Mozilla Firefox*/
+	-webkit-border-radius:10px; /* WebKit y Safari */
+	border-radius: 10px; /* IE */
+	/*Sombra */
+	box-shadow: 10px 10px 10px #ccc;
+	-webkit-box-shadow: 10px 10px 10px #ccc;
+	-moz-box-shadow: 10px 10px 10px #ccc;
+	background-image: url(../../Seccion703/logini.png);
+}
+.fuente_form_login {
+	font-family: "Century Gothic";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: bold;
+	color: #900;
+	border-top-color: #900;
+	border-right-color: #900;
+	border-bottom-color: #900;
+	border-left-color: #900;
+}
+.fuente_errores {
+	font-family: "Century Gothic";
+	font-size: 14px;
+	color: #FFF;
+	text-align: center;
+	border-top-color: #900;
+	border-right-color: #900;
+	border-bottom-color: #900;
+	border-left-color: #900;
+}
+#formulario_usuarios {
+	background-color: #FFF;
+	padding: 10px;
+	height: 300px;
+	width: 700px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	border: 2px solid #900;
+
+.form-fijo {
+    position: fixed;
+    top: 0;
+    width: 900px;
+}

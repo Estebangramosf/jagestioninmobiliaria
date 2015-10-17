@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<title>Sitio con responsive web y jQuery FancyBox</title>
+	<meta name="description" content="Aqui encontraras los servicios que ofrecemos." />	
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="author" type="text/plain" href="humans.txt" />
+	<link rel="sitemap" type="application/xml" title="Sitemap" href="sitemap.xml" />
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <link rel="stylesheet" href="js/fancy-Box/source/jquery.fancybox.css" type="text/css" media="screen">
+        <script type="text/javascript" src="js/fancy-Box/source/jquery.fancybox.pack.js"></script>
+ 	<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+ 	    <script type="text/javascript">
+          $(document).ready(function(){
+            $(".fancybox").fancybox();
+          });
+        </script>
+         	    <script type="text/javascript">
+          $(document).ready(function(){
+            $(".iframe").iframe();
+          });
+        </script>
+
+
+</head>
+<body>
+
+<div id="content">
+	<section>
+		<h2>Algunos de nuestros trabajos</h2>
+		<div class="fancybox">
+			<article>
+				<a class="fancybox" href="img/J--A.png" title="Trabajo 1">
+					<img class="redonda" src="img/J--A.png" WIDTH="32" HEIGHT="32"/>
+				</a>
+			</article>
+			<article>
+				<a class="fancybox" href="img/J-A.png" title="Trabajo 2">
+					<img class="redonda" src="img/J-A.png" WIDTH="32" HEIGHT="32"/>
+				</a>
+			</article>
+			<article>
+				<a class="fancybox" href="img/JA.png" title="Trabajo 3">
+					<img class="redonda" src="img/JA.png" WIDTH="32" HEIGHT="32"/>
+				</a>
+			</article>
+			<article>
+				<a class="fancybox" href="img/carne.jpg" title="Trabajo 4">
+					<img class="redonda" src="img/carne.jpg" WIDTH="32" HEIGHT="32"/>
+				</a>
+			</article>
+			<article>
+				<a class="fancybox" href="img/spa.jpg" title="Trabajo 5">
+					<img class="redonda" src="img/spa.jpg" WIDTH="32" HEIGHT="32"/>
+				</a>
+			</article>
+		</div>
+		<div class="fancybox">
+			<article>
+				<a class="fancybox" href="img/J--A.png" title="Trabajo 6">
+					<img class="redonda" src="img/J--A.png" WIDTH="32" HEIGHT="32"/>
+				</a>
+			</article>
+			<article>
+				<a class="fancybox" href="img/J-A.png" title="Trabajo 7">
+					<img class="redonda" src="img/J-A.png" WIDTH="32" HEIGHT="32"/>
+				</a>
+			</article>
+			<article>
+				<a class="fancybox" href="img/JA.png" title="Trabajo 8">
+					<img class="redonda" src="img/JA.png" WIDTH="32" HEIGHT="32"/>
+				</a>
+			</article>
+			<article>
+				<a  class="fancybox" href="img/carne.jpg" title="Trabajo 9">
+					<img class="redonda" src="img/carne.jpg" WIDTH="32" HEIGHT="32"/>
+				</a>
+			</article>
+			<article>
+				<a class="fancybox" href="img/spa.jpg" title="Trabajo 10">
+					<img class="redonda" src="img/spa.jpg" WIDTH="32" HEIGHT="32"/>
+				</a>
+			</article>
+		</div>
+	</section>	
+</div>
+</body>
+</html>

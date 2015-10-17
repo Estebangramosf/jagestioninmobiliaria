@@ -1,0 +1,4 @@
+host: mysql.hostinger.es
+ddbb:u443371958_ jagi
+user:u443371958_ jagi
+pass:jagi2015
