@@ -121,7 +121,7 @@ switch($_REQUEST['accion']){
 	
 		break;		
 	case "Cancelar":
-		header("Location:../index.php");
+		header("Location:../perfil.php?cancelado");
 		break;				
 }
 

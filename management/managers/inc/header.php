@@ -158,7 +158,10 @@ if(isset($_SESSION["sesionActiva"]) && isset($_SESSION["sesionNombre"])){
             </div><!--/.navbar-collapse 'btn-success' -->
         </div>
         <article id="contento">
-        <input style="text-align:left;" maxlength="500" name="informacion" readonly="readonly" type="text" onbLur="" class="form-control input-sm" id="informacion" value="-" >            
+                <div class="input-group">
+                  <span class="input-group-addon">INFO: </span>
+                  <input style="text-align:left;" maxlength="500" name="informacion" readonly="readonly" type="text" onbLur="" class="form-control input-sm" id="informacion" value="-" >                              
+                </div>
         </article>         
     </nav>
 </header>

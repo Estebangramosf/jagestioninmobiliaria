@@ -157,7 +157,7 @@ if(isset($_SESSION["sesionActiva"]) && isset($_SESSION["sesionNombre"])){
                           </label>
                         </div>                 
                         <div class="form-group">
-                            <input type="email" name="email" required=""  placeholder="Email *" data-validation-required-message="" class="form-control input-sm">
+                            <input type="email" name="correo1" required=""  placeholder="Email *" data-validation-required-message="" class="form-control input-sm">
                         </div>
                         <div class="form-group">
                             <input type="password" name="password" required=""  placeholder="Clave *" data-validation-required-message="" class="form-control input-sm">
@@ -173,17 +173,20 @@ if(isset($_SESSION["sesionActiva"]) && isset($_SESSION["sesionNombre"])){
             </div><!--/.navbar-collapse 'btn-success' -->          
         </div>
         <article id="contento">
-        <input style="text-align:center;" maxlength="500" name="informacion" readonly="readonly" type="text" onbLur="" class="form-control input-sm" id="informacion" value="-" >            
-        </article> 
+                <div class="input-group">
+                  <span class="input-group-addon">INFO: </span>
+                  <input style="text-align:left;" maxlength="500" name="informacion" readonly="readonly" type="text" onbLur="" class="form-control input-sm" id="informacion" value="-" >                              
+                </div>
+        </article>  
     </nav>
 </header>
 <script>
 
   function validarUsuario() {
     var verificador=true;
-    if (!document.formLogin.email.value) {
+    if (!document.formLogin.correo1.value) {
       alert("La credencial de nombre es incorrecta");
-      document.formLogin.email.focus();
+      document.formLogin.correo1.focus();
       verificador=false;
     }else if (!document.formLogin.password.value) {
       document.formLogin.password.focus();
@@ -195,8 +198,8 @@ if(isset($_SESSION["sesionActiva"]) && isset($_SESSION["sesionNombre"])){
   }
   function validarCredenciales() {
     var pase=true;
-    if (!document.formLogin.email.value) {
-      document.formLogin.email.focus();
+    if (!document.formLogin.correo1.value) {
+      document.formLogin.correo1.focus();
       pase=false;
     }else if (!document.formLogin.password.value) {
       document.formLogin.password.focus();

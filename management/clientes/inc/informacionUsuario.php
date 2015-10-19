@@ -60,7 +60,8 @@ if(isset($_REQUEST['dar-de-alta'])){
                   <option id="genero_3" onbLur="validarDatosContacto()" value="3" <?php if ($_SESSION['sesionGenero']==3){echo 'selected';}?> >Otro</option>
                 </select>
               </div>
-              <!-- /Genero -->              
+              <!-- /Genero -->        
+
               <!-- Campo correo -->
               <div class="form-group col-xs-12">
                 <label>Su Correo (Usuario)</label>
@@ -126,7 +127,7 @@ if(isset($_REQUEST['dar-de-alta'])){
               <!-- Campo fecha de nacimiento --> 
               <div class="form-group-justified col-xs-6">
                 <label>Indique su fecha de nacimiento</label>
-                <input class="form-control" type="date" name="nacimiento" step="3" min="1960-01-01" max="1998-12-31" value="<?php echo $_SESSION['sesionNacimiento'];?>">               
+                <input class="form-control" type="date" onbLur="validarDatosContacto()" name="nacimiento" step="3" min="1960-01-01" max="1998-12-31" value="<?php echo $_SESSION['sesionNacimiento'];?>">               
 <!--
                 <input maxlength="4" name="ano" type="number" onbLur="validarDatosContacto()" required="" class="form-control input-sm" id="ano" placeholder="1998" data-validation-required-message="" value="<?php echo strlen($_SESSION['sesionNacimiento'],0,4); ?>" >
                 <input maxlength="2" name="mes" type="number" onbLur="validarDatosContacto()" required="" class="form-control input-sm" id="mes" placeholder="12" data-validation-required-message="" value="<?php echo strlen($_SESSION['sesionNacimiento'],5,2); ?>" >
@@ -195,7 +196,6 @@ if(isset($_REQUEST['dar-de-alta'])){
                     </select>
                   </div>                  
                 <?php } ?>  
-                         
               <!-- /Tipo de Usuario -->
               </fieldset>
               <hr>
@@ -228,38 +228,25 @@ if(isset($_REQUEST['dar-de-alta'])){
               <input type="hidden" name="accion" id="accion" />
           </div>
       </form>    
-<script type="text/javascript">
-  (function validarFecha(){ 
-
-  })();
-
+<script>
   function validarDatosContacto (valor) {
     var verificador=true;
     document.formUsuario.accion.value=valor;
-    /*
-    var ano = document.getElementById("ano").value;
-    var mes = document.getElementById("mes").value;
-    var dia = document.getElementById("dia").value;
-    dia.remove(dia.31);
-    document.formUsuario.nacimiento.value=ano+"/"+mes+"/"+dia;     
-    */
     expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if(valor=="Cancelar"){
       document.formUsuario.submit();
     }else{
+        console.log("Entre");
         if (!document.formUsuario.nombre.value) {
         document.getElementById("informacion").value = "Nombre requerido";
-        //alert("Debes ingresar tu Nombre");
         document.formUsuario.nombre.focus();
         verificador=false;
       } else if (!document.formUsuario.apellido.value) {
         document.getElementById("informacion").value = "Apellido requerido";
-      //  alert("Debes ingresar tu apellido");
         document.formUsuario.apellido.focus();
         verificador=false;
       } else if (!document.formUsuario.rut.value) {
         document.getElementById("informacion").value = "Rut requerido";
-      //  alert("Debes ingresar tu rut");
         document.formUsuario.rut.focus();
         verificador=false;
       } else if (!document.formUsuario.correo.value||document.formUsuario.correo.value) {
@@ -277,22 +264,18 @@ if(isset($_REQUEST['dar-de-alta'])){
           }
       } else if (!document.formUsuario.clave.value) {
         document.getElementById("informacion").value = "Clave requerida";
-      //  alert("Debes ingresar una clave");
         document.formUsuario.clave.focus();
         verificador=false;
       } else if (!document.formUsuario.claveRep.value) {
         document.getElementById("informacion").value = "Repita su clave";
-      //  alert("Debes re-ingresar tu clave");
         document.formUsuario.claveRep.focus();
         verificador=false;
       } else if (document.formUsuario.claveRep.value != document.formUsuario.clave.value) {
         document.getElementById("informacion").value = "Las claves no coinciden";
-      //  alert("Las claves no coinciden");
         document.formUsuario.claveRep.focus();
         verificador=false;      
       } else if (!document.formUsuario.estado.value) {
         document.getElementById("informacion").value = "Seleccione su estado";
-      //  alert("Debes seleccionar el estado");
         document.formUsuario.estado.focus();
         verificador=false;
       }/* else if (!document.formUsuario.foto.value) {
@@ -300,47 +283,30 @@ if(isset($_REQUEST['dar-de-alta'])){
         document.formUsuario.foto.focus();
         verificador=false;
       }*/else if (!document.formUsuario.direccion.value) {
-        //alert("Debes indicar tu dirección");
         document.getElementById("informacion").value = "Direccion requerida";
         document.formUsuario.direccion.focus();
         verificador=false;
       } else if (!document.formUsuario.ciudad.option.value) {
-        //alert("Debes indicar tu ciudad de origen.");
         document.getElementById("informacion").value = "Ciudad requerida";
         document.formUsuario.ciudad.focus();
         verificador=false;
-      } else if (!document.formUsuario.ano.value) {
-        //alert("Debes indicar tu fecha de nacimiento");
+      } else if (!document.formUsuario.nacimiento.value||document.formUsuario.nacimiento.value==="dd-mm-aaaa") {
         document.getElementById("informacion").value = "A&ntile;o de nacimiento requerido";
-        document.formUsuario.ano.focus();
-        verificador=false;  
-      } else if (!document.formUsuario.mes.value) {
-        //alert("Debes indicar tu fecha de nacimiento");
-        document.getElementById("informacion").value = "Mes de nacimiento requerida";
-        document.formUsuario.mes.focus();
-        verificador=false;  
-      } else if (!document.formUsuario.dia.value) {
-        //alert("Debes indicar tu fecha de nacimiento");
-        document.getElementById("informacion").value = "Dia de nacimiento requerida";
-        document.formUsuario.dia.focus();
+        document.formUsuario.nacimiento.focus();
         verificador=false;        
-      } else if (!document.formUsuario.numerofono.value && !document.formUsuario.numerocasa.value) {
-        //alert("Debes ingresar un Número de contacto");
-        document.getElementById("informacion").value = "Correo requerido";
+      }  else if (!document.formUsuario.numerofono.value && !document.formUsuario.numerocasa.value) {
+        document.getElementById("informacion").value = "N&uacute;mero requerido";
         document.formUsuario.numerofono.focus();
         verificador=false; 
       } else if (!document.formUsuario.genero.value) {
-        //alert("Indicar tu genero");
         document.getElementById("informacion").value = "Seleccione genero";
         document.formUsuario.genero.focus();
         verificador=false; 
       } else if (!document.formUsuario.estadocivil.value) {
-        //alert("Debes indicar tu estado civil");
         document.getElementById("informacion").value = "Indique su estado civil";
         document.formUsuario.estadocivil.focus();
         verificador=false; 
       } else if (!document.formUsuario.tipousuario.value) {
-        //alert("Seleccionar un tipo de usuario");
         document.getElementById("informacion").value = "Seleccione el tipo de usuario";
         document.formUsuario.tipousuario.focus();
         verificador=false;                         

@@ -1,5 +1,8 @@
 <?php 
 $genero = "o/a";
+if ($_SESSION['sesionGenero']==1||$_SESSION['sesionGenero']==3){
+  $genero = "o";
+}else{$genero = "a";}
 if(isset($_SESSION['sesionActiva'])){
 	/*echo $_SESSION["tipoSesion"];
 	echo $_SESSION["sesionClave"];*/
@@ -12,6 +15,9 @@ if(isset($_SESSION['sesionActiva'])){
                 <p class="help-block text-danger"></p>
               </div>
               <!-- /Campo id -->
+              <!-- Campo foto -->
+              <input type="hidden" name="foto" id="foto" value="-">
+              <!-- /Campo foto -->            
               <fieldset><legend>Datos personales</legend>
               <!-- Campo nombre -->
               <div class="form-group col-xs-6">
@@ -34,6 +40,16 @@ if(isset($_SESSION['sesionActiva'])){
                 <p class="help-block text-danger"></p>
               </div>
               <!-- /Campo Rut -->
+              <!-- Campo genero -->
+               <div class="form-group col-xs-6">   
+                <label>Indique g&eacute;nero</label>                
+                <select name="genero" multiple class="form-control">
+                  <option id="genero_1" onbLur="validarDatosContacto()" value="1" <?php if ($_SESSION['sesionGenero']==1){echo 'selected';}?> >Masculino</option>
+                  <option id="genero_2" onbLur="validarDatosContacto()" value="2" <?php if ($_SESSION['sesionGenero']==2){echo 'selected';}?> >Femenino</option>
+                  <option id="genero_3" onbLur="validarDatosContacto()" value="3" <?php if ($_SESSION['sesionGenero']==3){echo 'selected';}?> >Otro</option>
+                </select>
+              </div>
+              <!-- /Campo Genero -->              
               <!-- Campo correo -->
               <div class="form-group col-xs-12">              
                 <label>Su Correo</label>
@@ -59,22 +75,7 @@ if(isset($_SESSION['sesionActiva'])){
               </div>
               <!-- /Campo repetir clave -->
               </fieldset>
-              <fieldset><legend>Datos de ubicaci&oacute;n</legend>              
-              <!-- Campo estado cliente -->
-              <label>Seleccione su estado de cliente</label>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="estado" id="opciones_1" value="1" <?php if ($_SESSION['sesionEstado']==1){echo 'checked';}?>>
-                  <strong>Activado</strong>
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="estado" id="opciones_2" value="2" <?php if ($_SESSION['sesionEstado']==2){echo 'checked';}?>>
-                  <strong>Desactivado</strong>
-                </label>
-              </div> 
-              <!-- Campo estado cliente-->
+              <hr>                                      
 <!--  Campo de foto
               <label>Seleccione su foto</label>
               <div class="form-group">
@@ -82,11 +83,12 @@ if(isset($_SESSION['sesionActiva'])){
                 <p class="help-block text-danger"></p>
               </div> 
       /Campo de foto
--->           <!-- Campo direccion-->
-              <input type="hidden" name="foto" id="foto" value="-">
+-->           
+              <fieldset><legend>Datos de ubicaci&oacute;n</legend>   
+              <!-- Campo direccion-->
               <div class="form-group col-xs-6">
               <label>Ingrese su Direcci&oacute;n</label>
-                <input maxlength="30" name="direccion" type="text" required="" class="form-control input-sm" id="direccion" placeholder="Su Direcci&oacute;n *" data-validation-required-message="Ingrese su direcci&oacute;n." value="<?php echo $_SESSION['sesionDireccion']; ?>" >
+                <input maxlength="30" name="direccion" type="text" onbLur="validarDatosContacto()" required="" class="form-control input-sm" id="direccion" placeholder="Su Direcci&oacute;n *" data-validation-required-message="Ingrese su direcci&oacute;n." value="<?php echo $_SESSION['sesionDireccion']; ?>" >
                 <p class="help-block text-danger"></p>
               </div>
               <!-- /Campo direccion-->
@@ -105,12 +107,12 @@ if(isset($_SESSION['sesionActiva'])){
                       6=>"Region Metropolitana");
                     for ($city=0;$city<7;$city++){                       
                       ?>
-                      <option id="genero_<php echo $city; ?>" onbLur="validarDatosContacto()" <?php if ($_SESSION["sesionCiudad"]==$ciudades[$city]){echo 'selected';} echo '>'.$ciudades[$city]; ?></option>';
+                      <option id="genero_<php echo $city; ?>" onbLur="validarDatosContacto()" <?php if ($_SESSION["sesionCiudad"]==$ciudades[$city]){echo 'selected';} ?>><?php echo $ciudades[$city]; ?> </option>';
                     <?php }
                   ?>                  
                 </select>
               </div>     
-              <!-- /Campo ciudad -->         
+              <!-- /Campo ciudad -->                 
               <!-- Campo nacimiento -->
               <div class="form-group-justified col-xs-6">
                 <label>Indique su fecha de nacimiento</label>
@@ -123,7 +125,10 @@ if(isset($_SESSION['sesionActiva'])){
                 value="<?php echo date("Y-m-d");?>               
 -->                
               </div> 
-              <!-- Campo nacimiento -->
+              <!-- /Campo nacimiento -->              
+              </fieldset>
+              <hr>
+              <fieldset><legend>Datos de contacto</legend>      
               <!-- Campo numeromovil -->
               <div class="form-group col-xs-6">
                 <label>Indique su n&uacute;mero movil</label>
@@ -138,98 +143,45 @@ if(isset($_SESSION['sesionActiva'])){
                 <p class="help-block text-danger"></p>
               </div>
               <!-- Campo /numerofijo -->
-              <!-- Campo genero -->
-              <label>Indique g&eacute;nero</label>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="genero" id="genero_1" value="1" <?php if ($_SESSION['sesionGenero']==1){echo 'checked'; $genero="o";}?>>
-                  <strong>Hombre</strong>
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="genero" id="genero_2" value="2" <?php if ($_SESSION['sesionGenero']==2){echo 'checked'; $genero="a";}?>>
-                  <strong>Mujer</strong>
-                </label>
-              </div>  
-              <div class="radio">
-                <label>
-                  <input type="radio" name="genero" id="genero_3" value="3" <?php if ($_SESSION['sesionGenero']==3){echo 'checked';}?>>
-                  <strong>Otro</strong>
-                </label>
-              </div>  
-              <!-- /Campo Genero -->
-                <!-- Campo Estado Civil -->
+              <!-- Campo Estado Civil -->
+              <div class="form-group col-xs-6">   
                 <label>Indique estado civil</label>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="estadocivil" id="estadocivil_1" value="1" <?php if ($_SESSION['sesionEstadoCivil']==1){echo 'checked';}?>>
-                    <strong>Solter<?php echo $genero; ?></strong>
-                  </label>
-                </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="estadocivil" id="estadocivil_2" value="2" <?php if ($_SESSION['sesionEstadoCivil']==2){echo 'checked';}?>>
-                    <strong>Casad<?php echo $genero; ?></strong>
-                  </label>
-                </div>  
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="estadocivil" id="estadocivil_3" value="3" <?php if ($_SESSION['sesionEstadoCivil']==3){echo 'checked';}?>>
-                    <strong>Divorciad<?php echo $genero; ?></strong>
-                  </label>
-                </div> 
+                <select name="estadocivil" multiple class="form-control">
+                  <option id="estadocivil_1" onbLur="validarDatosContacto()" value="1" <?php if ($_SESSION['sesionEstadoCivil']==1){echo 'selected';}?> >Solter<?php echo $genero; ?></option>
+                  <option id="estadocivil_2" onbLur="validarDatosContacto()" value="2" <?php if ($_SESSION['sesionEstadoCivil']==2){echo 'selected';}?> >Casad<?php echo $genero; ?></option>
+                  <option id="estadocivil_3" onbLur="validarDatosContacto()" value="3" <?php if ($_SESSION['sesionEstadoCivil']==3){echo 'selected';}?> >Divorciad<?php echo $genero; ?></option>
+                </select>
+              </div>
                 <!-- /Campo Estado Civil -->
+              <!-- Campo estado del cliente => radiobutton -->
+              <div class="form-group col-xs-6">   
+                <label>Seleccione su estado de cliente</label>   
+                <select name="estado" multiple class="form-control">
+                  <option id="opciones_1" onbLur="validarDatosContacto()" value="1" <?php if ($_SESSION['sesionEstado']==1){echo 'selected';}?> >Activado</option>
+                  <option id="opciones_2" onbLur="validarDatosContacto()" value="2" <?php if ($_SESSION['sesionEstado']==2){echo 'selected';}?> >Desactivado</option>
+                </select>
+              </div>
+              <!-- /Campo estado del cliente => radiobutton -->                
                 <!-- Tipo de Usuario --> 
-                <?php 
-                    /*if ($_SESSION['tipoSesion']=="10"||$_SESSION['tipoSesion']=="1"){                      
-                      $cliente =
-                        '
-                          <label>Indique tipo de usuario</label>                        
-                          <div class="radio">
-                            <label>
-                              <input type="radio" name="tipousuario" id="tipousuario_3" value="100"'; 
-                              if ($_SESSION["tipoSesion"]=="100"){ $cliente .= " checked";}
-                              echo $cliente.
-                              ">
-                              <strong>Cliente</strong>
-                            </label>
-                          </div>   
-                        ";  
-                    }elseif ($_SESSION['tipoSesion']=="100") {
-                      echo '<input type="hidden" name="tipousuario" id="tipousuario_3" value="100">';                               
-                    }                
-                    if ($_SESSION['tipoSesion']=="10"||$_SESSION['tipoSesion']=="1"){                      
-                      $moderador =
-                        '
-                          <div class="radio">
-                            <label>
-                              <input type="radio" name="tipousuario" id="tipousuario_2" value="10"'; 
-                              if ($_SESSION["tipoSesion"]=="10"){ $moderador .= " checked";}
-                              echo $moderador.
-                              ">
-                              <strong>Moderador</strong>
-                            </label>
-                          </div>   
-                        ";  
-                    }*/
-                    if ($_SESSION['tipoSesion']=="1"){
-                      $administrador = 
-                        '
-                          <div class="radio">
-                            <label>
-                              <input type="radio" name="tipousuario" id="tipousuario_1" value="1"';  
-                              if ($_SESSION["tipoSesion"]=="1"){ $administrador .= " checked";}
-                              echo $administrador.
-                              '>
-                              <strong>Administrador</strong>
-                            </label>
-                          </div>                        
-                          
-                        ';
-                    }
-                ?>              
+              <?php
+                if ($_SESSION['tipoSesion']=="1") {
+                ?>
+                  <div class="form-group col-xs-6">   
+                    <label>Seleccione su tipo de usuario</label>   
+                    <select name="tipousuario" multiple class="form-control">
+                    <?php if($_SESSION['tipoSesion']=="10"||$_SESSION['tipoSesion']=="100"){ ?>
+                      <option id="tipousuario_1" onbLur="validarDatosContacto()" value="100" <?php if ($_SESSION["tipoSesion"]=="100"){echo 'selected';}?> >Cliente</option>
+                    <?php } if($_SESSION['tipoSesion']=="10"){ ?>                  
+                      <option id="tipousuario_2" onbLur="validarDatosContacto()" value="10" <?php if ($_SESSION["tipoSesion"]=="10"){echo 'selected';}?> >Promotor</option>
+                    <?php } if($_SESSION['tipoSesion']=="1"){ ?>  
+                      <option id="tipousuario_3" onbLur="validarDatosContacto()" value="1" <?php if ($_SESSION["tipoSesion"]=="1"){echo 'selected';}?> >Administrador</option>
+                    <?php } ?>
+                    </select>
+                  </div>                  
+                <?php } ?>  
                 <!-- /Tipo de Usuario -->
+              </fieldset>
+              <hr>                
               <div class="form-group">
               <?php 
               if ($_SESSION["tipoSesion"]=="1"||$_SESSION["tipoSesion"]=="10"||$_SESSION["tipoSesion"]=="100"){
@@ -256,44 +208,54 @@ if(isset($_SESSION['sesionActiva'])){
               <input type="hidden" name="accion" id="accion" />
           </div>
       </form>    
-<script type="text/javascript">
+<script>
   function validarDatosContacto (valor) {
     var verificador=true;
     document.formUsuario.accion.value=valor;
-  
+    expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if(valor=="Cancelar"){
       document.formUsuario.submit();
     }else{
+        console.log("Entre");
         if (!document.formUsuario.nombre.value) {
-        alert("Debes ingresar tu Nombre");
+        document.getElementById("informacion").value = "Nombre requerido";
         document.formUsuario.nombre.focus();
         verificador=false;
       } else if (!document.formUsuario.apellido.value) {
-        alert("Debes ingresar tu apellido");
+        document.getElementById("informacion").value = "Apellido requerido";
         document.formUsuario.apellido.focus();
         verificador=false;
       } else if (!document.formUsuario.rut.value) {
-        alert("Debes ingresar tu rut");
+        document.getElementById("informacion").value = "Rut requerido";
         document.formUsuario.rut.focus();
         verificador=false;
-      } else if (!document.formUsuario.correo.value) {
-        alert("Debes ingresar un correo de contacto");
-        document.formUsuario.correo.focus();
-        verificador=false;
+      } else if (!document.formUsuario.correo.value||document.formUsuario.correo.value) {
+          if (!expr.test(document.formUsuario.correo.value)  ) {
+            document.formUsuario.correo.value="";
+            document.formUsuario.correo.focus();
+            document.getElementById("informacion").value = "Formato invalido";
+            verificador=false;
+          }else{
+            if(!document.formUsuario.correo.value){
+              document.formUsuario.correo.focus();
+              document.getElementById("informacion").value = "Correo requerido";
+              verificador=false;              
+            }
+          }
       } else if (!document.formUsuario.clave.value) {
-        alert("Debes ingresar una clave");
+        document.getElementById("informacion").value = "Clave requerida";
         document.formUsuario.clave.focus();
         verificador=false;
       } else if (!document.formUsuario.claveRep.value) {
-        alert("Debes re-ingresar tu clave");
+        document.getElementById("informacion").value = "Repita su clave";
         document.formUsuario.claveRep.focus();
         verificador=false;
       } else if (document.formUsuario.claveRep.value != document.formUsuario.clave.value) {
-        alert("Las claves no coinciden");
+        document.getElementById("informacion").value = "Las claves no coinciden";
         document.formUsuario.claveRep.focus();
         verificador=false;      
       } else if (!document.formUsuario.estado.value) {
-        alert("Debes seleccionar el estado");
+        document.getElementById("informacion").value = "Seleccione su estado";
         document.formUsuario.estado.focus();
         verificador=false;
       }/* else if (!document.formUsuario.foto.value) {
@@ -301,40 +263,39 @@ if(isset($_SESSION['sesionActiva'])){
         document.formUsuario.foto.focus();
         verificador=false;
       }*/else if (!document.formUsuario.direccion.value) {
-        alert("Debes indicar tu dirección");
+        document.getElementById("informacion").value = "Direccion requerida";
         document.formUsuario.direccion.focus();
         verificador=false;
       } else if (!document.formUsuario.ciudad.value) {
-        alert("Debes indicar tu ciudad de origen.");
+        document.getElementById("informacion").value = "Ciudad requerida";
         document.formUsuario.ciudad.focus();
         verificador=false;
-      } else if (!document.formUsuario.nacimiento.value) {
-        alert("Debes indicar tu fecha de nacimiento");
+      } else if (!document.formUsuario.nacimiento.value||document.formUsuario.nacimiento.value==="dd-mm-aaaa") {
+        document.getElementById("informacion").value = "A&ntile;o de nacimiento requerido";
         document.formUsuario.nacimiento.focus();
         verificador=false;  
       } else if (!document.formUsuario.numerofono.value && !document.formUsuario.numerocasa.value) {
-        alert("Debes ingresar un Número de contacto");
+        document.getElementById("informacion").value = "N&uacute;mero requerido";
         document.formUsuario.numerofono.focus();
         verificador=false; 
       } else if (!document.formUsuario.genero.value) {
-        alert("Indicar tu genero");
+        document.getElementById("informacion").value = "Seleccione genero";
         document.formUsuario.genero.focus();
         verificador=false; 
       } else if (!document.formUsuario.estadocivil.value) {
-        alert("Debes indicar tu estado civil");
+        document.getElementById("informacion").value = "Indique su estado civil";
         document.formUsuario.estadocivil.focus();
         verificador=false; 
       } else if (!document.formUsuario.tipousuario.value) {
-        alert("Seleccionar un tipo de usuario");
+        document.getElementById("informacion").value = "Seleccione el tipo de usuario";
         document.formUsuario.tipousuario.focus();
         verificador=false;                         
       }
-      if (verificador) {
-        document.formUsuario.submit();      
-      }
+      if(verificador&&valor=='Modificar'){
+        document.formUsuario.submit();
+      } 
     }
   }
-
   window.onload = function () {
     //document.getElementById("submitButton").onclick = validarDatosContacto(this.value);
   }
