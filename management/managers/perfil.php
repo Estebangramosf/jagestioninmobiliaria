@@ -1,13 +1,6 @@
 <?php   
 if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-  
-  if(isset($_REQUEST['cancelado'])){ 
-    ?> <script languaje="javascript">alert("Acción cancelada");</script>" <?php
-  }
-  if(isset($_REQUEST['exito'])){ 
-    ?> <script languaje="javascript">alert("Datos guardados correctamente");</script> <?php
-  }  
+    session_start(); 
 }
 if (isset($_SESSION['sesionActiva'])&&$_SESSION['tipoSesion']=="1"){
     include('inc/funciones.php');
@@ -75,6 +68,12 @@ if (isset($_SESSION['sesionActiva'])&&$_SESSION['tipoSesion']=="1"){
           <div style="" id="" class="">
             <div>
                 <?php 
+                  if(isset($_REQUEST['cancelado'])){ 
+                    echo '<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Cancelado por el usuario.</h4></div>';
+                  }                
+                  if(isset($_REQUEST['exito'])){ 
+                    echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Datos guardados correctamente.</h4></div>';
+                  }                     
                   include("inc/informacionUsuario.php"); 
                 ?>
             </div>
