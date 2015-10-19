@@ -1,5 +1,6 @@
 <!-- Full Page Image Background Carousel Header -->
 <div id = "myGaleria" class = "carousel slide " style="font-family: 'Century Gothic'; text-shadow: black 3px 2px;">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
 <!-- Indicadores -->
   <ol class = "carousel-indicators">
     <li data-target = "#myGaleria" data-slide-to = "0" class="active"></li>
@@ -53,14 +54,14 @@
     <div class = "item">
           <!-- Set the 5 background image using inline CSS below. -->    
       <div class="fill"><img style="background-size:cover;" href="index.php" class="img-rounded" src = "img/promociones/gana-con-nosotros/5.png" height=100% width=100%></div>
-        <div class = "carousel-caption">
-          <div class="title-slide" align="center"><br>            
-            
-          </div>  
-        </div>
+        <a href="gana-con-nosotros.php">
+          <div class = "carousel-caption">
+            <div class="title-slide" align="center"><br>            
+              
+            </div>  
+          </div>
+        </a>
     </div>
-
-
   </div> 
   <!-- Controles -->         
   <a class = "carousel-control left" href = "#myGaleria" data-slide = "prev">

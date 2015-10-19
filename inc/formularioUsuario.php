@@ -1,52 +1,93 @@
       <form name="formUsuario" method="post" action="inc/procesaInformacionUsuario.php" enctype="application/x-www-form-urlencoded">
           <div class="" id="">
+              <!-- Campo id -->
               <article class="form-group">                
                 <input name="id" type="hidden" required="" class="form-control input-sm" id="id" placeholder="Tu ID *" data-validation-required-message="Ingrese su id." value="" >
                 <p class="help-block text-danger"></p>
               </article>
+              <!-- /Campo id -->
+              <fieldset><legend>Datos personales</legend>
+              <!-- Campo nombre -->
               <article class="form-group col-xs-6">
                 <label>Su Nombre</label>
                 <input maxlength="30" name="nombre" type="text" required="" onbLur="validarDatosContacto(1)" class="form-control input-sm" id="nombre" placeholder="Su Nombre *" data-validation-required-message="Ingrese su nombre." value="" >
                 <p class="help-block text-danger"></p>
               </article>
+              <!-- /Campo nombre -->
+              <!-- Campo apellido -->
               <article class="form-group col-xs-6">
                 <label>Su Apellido</label>             
                 <input maxlength="30" name="apellido" type="text" required="" onbLur="validarDatosContacto(2)" class="form-control input-sm" id="apellido" placeholder="Su Apellido *" data-validation-required-message="Ingrese su apellido." value="" >
                 <p class="help-block text-danger"></p>
               </article>
+              <!-- /Campo apellido -->
+              </fieldset><hr>
+              <fieldset><legend>Datos de inicio de sesi&oacute;n</legend>
+              <!-- Campo clave -->
               <article class="form-group col-xs-6">
                 <label>Su Clave</label>
                 <input maxlength="15" name="clave" type="password" required="" onbLur="validarDatosContacto(3)" class="form-control input-sm" id="clave" placeholder="Su Clave *" data-validation-required-message="Ingrese una clave." value="" >
                 <p class="help-block text-danger"></p>
               </article>
+              <!-- /Campo clave -->
+              <!-- Campo repetir clave -->
               <article class="form-group col-xs-6">
                 <label>Repita su Clave</label>              
                 <input maxlength="15" name="claveRep" type="password" required="" onbLur="validarDatosContacto(4)" class="form-control input-sm" id="claveRep" placeholder="Repetir Clave *" data-validation-required-message="Vuelva a ingresar su clave." value="" >
                 <p class="help-block text-danger"></p>
-              </article>              
-              <article class="form-group">
+              </article> 
+              <!-- /Campo repetir clave -->             
+              <!-- Campo correo -->
+              <article class="form-group">              
                 <label>Su Correo (ser&aacute; su usuario)</label>
-                
-                <p class="help-block text-danger"><input  onbLur="validarDatosContacto(5)" name="correo" type="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required="required" class="form-control input-sm" id="correo" placeholder="ejemplo@dominio.com" data-validation-required-message="Ingrese su dirección de e-mail." maxlength="40"/></p>
+                <div class="input-group">
+                  <span class="input-group-addon">@</span>      
+                  <input  onbLur="validarDatosContacto(5)" name="correo" type="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required="required" class="form-control input-sm" id="correo" placeholder="ejemplo@dominio.com" data-validation-required-message="Ingrese su dirección de e-mail." maxlength="40"/>
+                  <p class="help-block text-danger"></p>
+                </div>                  
               </article>
+              <!-- /Campo correo -->
+              </fieldset><hr>
+              <fieldset><legend>Datos de contacto</legend>
+              <!-- Campo numero movil -->
               <article class="form-group">
                 <label>Indique su n&uacute;mero movil</label>
                 <input maxlength="15" name="numerofono" type="number" required="" onbLur="validarDatosContacto(6)" class="form-control input-sm" id="numerofono" placeholder="Su N&uacute;mero Movil *" data-validation-required-message="Ingrese su nombre." value="" >
                 <p class="help-block text-danger"></p>
-              </article>               
-                <article class="form-group">
-                <input type="hidden" name="rut" id="rut" value="1-9">  
+              </article>      
+              </fieldset>         
+              <!-- Campo numero movil -->
+              <article class="form-group">
+                <!-- Rut -->        
+                <input type="hidden" name="rut" id="rut" value="1-9"> 
+                <!-- /Rut -->        
+                <!-- Estado -->         
                 <input type="hidden" name="estado" id="estado" value="1">
+                <!-- /Estado -->        
+                <!-- Foto -->                        
                 <input type="hidden" name="foto" id="foto" value="-">
+                <!-- /Foto -->        
+                <!-- Direccion -->        
                 <input type="hidden" name="direccion" id="direccion" value="No especificado">
-                <input type="hidden" name="ciudad" id="ciudad" value="No especificada">           
-                <input type="hidden" name="nacimiento" id="nacimiento" value="1991-01-01">
+                <!-- /Diereccion -->        
+                <!-- Ciudad -->        
+                <input type="hidden" name="ciudad" id="ciudad" value="No especificada">   
+                <!-- /Ciudad -->        
+                <!-- Nacimianto -->        
+                <input type="hidden" name="nacimiento" id="nacimiento" value="1991-01-01">                
+                <!-- /Nacimianto -->        
+                <!-- Tipo usuario -->
                 <input type="hidden" name="numerocasa" id="numerocasa" value="-">                            
+                <!-- /Tipo usuario -->
                 <!-- Genero -->
                 <input type="hidden" name="genero" id="genero" value="3">
                 <!-- /Genero -->
+                <!-- Estado civil -->
                 <input type="hidden" name="estadocivil" id="estadocivil" value="1">
+                <!-- /Estado civil -->
+                <!-- Tipo usuario -->
                 <input type="hidden" name="tipousuario" id="tipousuario" value="100">              
+                <!-- /Tipo usuario -->
               </article>                    
                 <!-- /Tipo de Usuario -->
               <article class="btn-group btn-group-sm-6">

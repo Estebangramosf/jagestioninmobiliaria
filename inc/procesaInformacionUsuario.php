@@ -34,7 +34,7 @@ switch($_REQUEST['accion']){
 												cli_genero, 
 												cli_estadocivil, 
 												cli_tipousuario) 
-							VALUES 		('".$_REQUEST['nombre']."',
+							VALUES 				('".$_REQUEST['nombre']."',
 												'".$_REQUEST['apellido']."',
 												'".$_REQUEST['rut']."',
 												'".$_REQUEST['correo']."',

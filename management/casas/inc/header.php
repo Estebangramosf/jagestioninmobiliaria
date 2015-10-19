@@ -33,6 +33,7 @@ if (isset($_SESSION['sesionActiva'])&&($_SESSION['tipoSesion']=="1"||$_SESSION['
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+   
     <base href=""></base>  
     <!-- Fin carga de hojas de estilo -->
     <style>

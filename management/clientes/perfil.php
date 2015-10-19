@@ -2,16 +2,6 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
     $estado = "";
-  if(isset($_REQUEST['cancelado'])){ 
-    ?> <script languaje="javascript">alert("Acción cancelada");</script>" <?php
-  }
-  if(isset($_REQUEST['exito'])){ 
-    ?> <script languaje="javascript">alert("Datos guardados correctamente");</script> <?php
-  }  
-  if(isset($_REQUEST['dar-de-alta'])){ 
-    ?> <script languaje="javascript">alert("ATENCION!:\n\nEstimado cliente:\nUsted esta apunto de darse de alta como cliente promotor, solicitamos que complete su informacion y a la brevdad nos pondremos en contacto con usted.");</script> <?php
-    $estado = "Recuerde que al completar la informaci&oacute;n debe hacer clic en '<span class='btn btn-info'> Modificar</span>' para actualizar su informaci&oacute;n en nuestros registros.";
-  } 
 }
 if (isset($_SESSION['sesionActiva'])&&$_SESSION['tipoSesion']=="100"||$_SESSION['tipoSesion']=="10"){
     include('inc/funciones.php');
@@ -79,7 +69,12 @@ if (isset($_SESSION['sesionActiva'])&&$_SESSION['tipoSesion']=="100"||$_SESSION[
           <div style="" id="" class="">
             <div>                
                 <?php 
-                  echo $estado;
+                  if(isset($_REQUEST['cancelado'])){ 
+                    echo '<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Cancelado por el usuario.</h4></div>';
+                  }                
+                  if(isset($_REQUEST['exito'])){ 
+                    echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Datos guardados correctamente.</h4></div>';
+                  }                                    
                   include("inc/informacionUsuario.php"); 
                 ?>
             </div>
@@ -87,7 +82,7 @@ if (isset($_SESSION['sesionActiva'])&&$_SESSION['tipoSesion']=="100"||$_SESSION[
           <br>
         </div>        
         <!-- /Perfil --> 
-<?php
+<?php  
   include('inc/footer.php');
 }else{
   header("Location:../managers/perfil.php");

@@ -30,7 +30,7 @@
     <h2>- Novedades -</h2>
     <hr>
   </article>
-  <article id="content">
+  <article id="" class="alert alert-default alert-dismissable">
     <?php include('inc/galeriaPromociones.php'); ?>    
   </article>
   <hr>

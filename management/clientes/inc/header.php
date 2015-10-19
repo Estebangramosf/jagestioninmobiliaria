@@ -33,6 +33,8 @@ if (isset($_SESSION['sesionActiva'])&&($_SESSION['tipoSesion']=="1"||$_SESSION['
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <base href=""></base>  
     <!-- Fin carga de hojas de estilo -->
     <style>
@@ -47,7 +49,6 @@ if (isset($_SESSION['sesionActiva'])&&($_SESSION['tipoSesion']=="1"||$_SESSION['
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     <!-- Script del pluguin jQuery -->        
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-
     <!-- Fin Script del pluguin jQuery -->
     <!-- Script del pluguin facebook -->
     <div id="fb-root"></div>
