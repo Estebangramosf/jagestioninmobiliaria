@@ -22,21 +22,21 @@ if(isset($_SESSION['sesionActiva'])){
               <!-- Campo nombre -->
               <div class="form-group col-xs-6">
                 <label>Su Nombre</label>
-                <input maxlength="30" name="nombre" type="text" required="" class="form-control input-sm" id="nombre" placeholder="Su Nombre *" data-validation-required-message="Ingrese su nombre." value="<?php echo $_SESSION['sesionNombre']; ?>" >
+                <input maxlength="30" name="nombre" type="text" onbLur="validarDatosContacto()" required="" class="form-control input-sm" id="nombre" placeholder="Su Nombre *" data-validation-required-message="Ingrese su nombre." value="<?php echo $_SESSION['sesionNombre']; ?>" >
                 <p class="help-block text-danger"></p>
               </div>
               <!-- /Campo nombre -->
               <!-- Campo apellido -->
               <div class="form-group col-xs-6">
                 <label>Su Apellido</label>             
-                <input maxlength="30" name="apellido" type="text" required="" class="form-control input-sm" id="apellido" placeholder="Su Apellido *" data-validation-required-message="Ingrese su apellido." value="<?php echo $_SESSION['sesionApellido']; ?>" >
+                <input maxlength="30" name="apellido" type="text" onbLur="validarDatosContacto()" required="" class="form-control input-sm" id="apellido" placeholder="Su Apellido *" data-validation-required-message="Ingrese su apellido." value="<?php echo $_SESSION['sesionApellido']; ?>" >
                 <p class="help-block text-danger"></p>
               </div>
               <!-- /Campo apellido -->
               <!-- Campo Rut -->
               <div class="form-group col-xs-6">
                 <label>Su Rut</label>
-                <input maxlength="14" name="rut" type="text" required="" class="form-control input-sm" id="rut" placeholder="Su Rut *" data-validation-required-message="Ingrese su rut." value="<?php echo $_SESSION['sesionRut']; ?>" >
+                <input maxlength="14" name="rut" type="text" onbLur="validarDatosContacto()" required="" class="form-control input-sm" id="rut" placeholder="Su Rut *" data-validation-required-message="Ingrese su rut." value="<?php echo $_SESSION['sesionRut']; ?>" >
                 <p class="help-block text-danger"></p>
               </div>
               <!-- /Campo Rut -->
@@ -55,7 +55,7 @@ if(isset($_SESSION['sesionActiva'])){
                 <label>Su Correo</label>
                 <div class="input-group">
                   <span class="input-group-addon">@</span>                
-                  <input maxlength="40" name="correo" type="email" required="" class="form-control input-sm" id="correo" placeholder="Su E-mail *" data-validation-required-message="Ingrese su dirección de e-mail." value="<?php echo $_SESSION['sesionCorreo']; ?>" >
+                  <input maxlength="40" name="correo" onbLur="validarDatosContacto()" type="email" required="" class="form-control input-sm" id="correo" placeholder="Su E-mail *" data-validation-required-message="Ingrese su dirección de e-mail." value="<?php echo $_SESSION['sesionCorreo']; ?>" >
                   <p class="help-block text-danger"></p>
                 </div>
               </div>
@@ -63,14 +63,14 @@ if(isset($_SESSION['sesionActiva'])){
               <!-- Campo clave -->
               <div class="form-group col-xs-6">
                 <label>Su Clave</label>
-                <input maxlength="15" name="clave" type="password" required="" class="form-control input-sm" id="clave" placeholder="Su Clave *" data-validation-required-message="Ingrese una clave." value="<?php echo $_SESSION['sesionClave']; ?>" >
+                <input maxlength="15" name="clave" onbLur="validarDatosContacto()" type="password" required="" class="form-control input-sm" id="clave" placeholder="Su Clave *" data-validation-required-message="Ingrese una clave." value="<?php echo $_SESSION['sesionClave']; ?>" >
                 <p class="help-block text-danger"></p>
               </div>
               <!-- /Campo clave -->
               <!-- Campo repetir clave -->
               <div class="form-group col-xs-6">
                 <label>Repita su Clave</label>              
-                <input maxlength="15" name="claveRep" type="password" required="" class="form-control input-sm" id="claveRep" placeholder="Repetir Clave *" data-validation-required-message="Vuelva a ingresar su clave." value="<?php echo $_SESSION['sesionClave']; ?>" >
+                <input maxlength="15" name="claveRep" onbLur="validarDatosContacto()" type="password" required="" class="form-control input-sm" id="claveRep" placeholder="Repetir Clave *" data-validation-required-message="Vuelva a ingresar su clave." value="<?php echo $_SESSION['sesionClave']; ?>" >
                 <p class="help-block text-danger"></p>
               </div>
               <!-- /Campo repetir clave -->
@@ -107,7 +107,7 @@ if(isset($_SESSION['sesionActiva'])){
                       6=>"Region Metropolitana");
                     for ($city=0;$city<7;$city++){                       
                       ?>
-                      <option id="genero_<php echo $city; ?>" onbLur="validarDatosContacto()" <?php if ($_SESSION["sesionCiudad"]==$ciudades[$city]){echo 'selected';} ?>><?php echo $ciudades[$city]; ?> </option>';
+                      <option id="ciudad_<php echo $city; ?>" onbLur="validarDatosContacto()" <?php if ($_SESSION["sesionCiudad"]==$ciudades[$city]){echo 'selected';} ?>><?php echo $ciudades[$city]; ?> </option>';
                     <?php }
                   ?>                  
                 </select>
@@ -116,7 +116,7 @@ if(isset($_SESSION['sesionActiva'])){
               <!-- Campo nacimiento -->
               <div class="form-group-justified col-xs-6">
                 <label>Indique su fecha de nacimiento</label>
-                <input class="form-control" type="date" name="nacimiento" step="3" min="1960-01-01" max="1998-12-31" value="<?php echo $_SESSION['sesionNacimiento'];?>">               
+                <input class="form-control" type="date" onbLur="validarDatosContacto()" name="nacimiento" step="3" min="1960-01-01" max="1998-12-31" value="<?php echo $_SESSION['sesionNacimiento'];?>">               
 <!--
                 <input maxlength="4" name="ano" type="number" onbLur="validarDatosContacto()" required="" class="form-control input-sm" id="ano" placeholder="1998" data-validation-required-message="" value="<?php echo strlen($_SESSION['sesionNacimiento'],0,4); ?>" >
                 <input maxlength="2" name="mes" type="number" onbLur="validarDatosContacto()" required="" class="form-control input-sm" id="mes" placeholder="12" data-validation-required-message="" value="<?php echo strlen($_SESSION['sesionNacimiento'],5,2); ?>" >
@@ -132,14 +132,14 @@ if(isset($_SESSION['sesionActiva'])){
               <!-- Campo numeromovil -->
               <div class="form-group col-xs-6">
                 <label>Indique su n&uacute;mero movil</label>
-                <input maxlength="15" name="numerofono" type="text" required="" class="form-control input-sm" id="numerofono" placeholder="Su N&uacute;mero Movil *" data-validation-required-message="Ingrese su nombre." value="<?php echo $_SESSION['sesionNumerofono']; ?>" >
+                <input maxlength="15" name="numerofono" type="text" onbLur="validarDatosContacto()" required="" class="form-control input-sm" id="numerofono" placeholder="Su N&uacute;mero Movil *" data-validation-required-message="Ingrese su nombre." value="<?php echo $_SESSION['sesionNumerofono']; ?>" >
                 <p class="help-block text-danger"></p>
               </div>                    
               <!-- /Campo numeromovil -->
               <!-- Campo numerofijo -->
               <div class="form-group col-xs-6">
                 <label>Indique su n&uacute;mero fijo</label>
-                <input maxlength="15" name="numerocasa" type="text" required="" class="form-control input-sm" id="numerocasa" placeholder="Su N&uacute;mero Fijo *" data-validation-required-message="Ingrese su nombre." value="<?php echo $_SESSION['sesionNumerocasa']; ?>" >
+                <input maxlength="15" name="numerocasa" type="text" onbLur="validarDatosContacto()" required="" class="form-control input-sm" id="numerocasa" placeholder="Su N&uacute;mero Fijo *" data-validation-required-message="Ingrese su nombre." value="<?php echo $_SESSION['sesionNumerocasa']; ?>" >
                 <p class="help-block text-danger"></p>
               </div>
               <!-- Campo /numerofijo -->
@@ -216,7 +216,6 @@ if(isset($_SESSION['sesionActiva'])){
     if(valor=="Cancelar"){
       document.formUsuario.submit();
     }else{
-        console.log("Entre");
         if (!document.formUsuario.nombre.value) {
         document.getElementById("informacion").value = "Nombre requerido";
         document.formUsuario.nombre.focus();
@@ -230,18 +229,18 @@ if(isset($_SESSION['sesionActiva'])){
         document.formUsuario.rut.focus();
         verificador=false;
       } else if (!document.formUsuario.correo.value||document.formUsuario.correo.value) {
-          if (!expr.test(document.formUsuario.correo.value)  ) {
-            document.formUsuario.correo.value="";
+        if (!expr.test(document.formUsuario.correo.value)  ) {
+          document.formUsuario.correo.value="";
+          document.formUsuario.correo.focus();
+          document.getElementById("informacion").value = "Formato invalido";
+          verificador=false;
+        }else{
+          if(!document.formUsuario.correo.value){
             document.formUsuario.correo.focus();
-            document.getElementById("informacion").value = "Formato invalido";
-            verificador=false;
-          }else{
-            if(!document.formUsuario.correo.value){
-              document.formUsuario.correo.focus();
-              document.getElementById("informacion").value = "Correo requerido";
-              verificador=false;              
-            }
+            document.getElementById("informacion").value = "Correo requerido";
+            verificador=false;              
           }
+        }
       } else if (!document.formUsuario.clave.value) {
         document.getElementById("informacion").value = "Clave requerida";
         document.formUsuario.clave.focus();
@@ -258,11 +257,12 @@ if(isset($_SESSION['sesionActiva'])){
         document.getElementById("informacion").value = "Seleccione su estado";
         document.formUsuario.estado.focus();
         verificador=false;
-      }/* else if (!document.formUsuario.foto.value) {
+      /*} else if (!document.formUsuario.foto.value) {
         alert("Debes incluír una foto en tu perfil");
         document.formUsuario.foto.focus();
         verificador=false;
-      }*/else if (!document.formUsuario.direccion.value) {
+    */} if (!document.formUsuario.direccion.value) {
+        console.log(valor);
         document.getElementById("informacion").value = "Direccion requerida";
         document.formUsuario.direccion.focus();
         verificador=false;
@@ -271,11 +271,11 @@ if(isset($_SESSION['sesionActiva'])){
         document.formUsuario.ciudad.focus();
         verificador=false;
       } else if (!document.formUsuario.nacimiento.value||document.formUsuario.nacimiento.value==="dd-mm-aaaa") {
-        document.getElementById("informacion").value = "A&ntile;o de nacimiento requerido";
+        document.getElementById("informacion").value = "Año de nacimiento requerido";
         document.formUsuario.nacimiento.focus();
         verificador=false;  
       } else if (!document.formUsuario.numerofono.value && !document.formUsuario.numerocasa.value) {
-        document.getElementById("informacion").value = "N&uacute;mero requerido";
+        document.getElementById("informacion").value = "Un numero requerido";
         document.formUsuario.numerofono.focus();
         verificador=false; 
       } else if (!document.formUsuario.genero.value) {
@@ -291,7 +291,10 @@ if(isset($_SESSION['sesionActiva'])){
         document.formUsuario.tipousuario.focus();
         verificador=false;                         
       }
-      if(verificador&&valor=='Modificar'){
+      if(!valor){
+        verificador = false;
+      }
+      if(verificador&&valor==='Modificar'){
         document.formUsuario.submit();
       } 
     }

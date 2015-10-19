@@ -236,8 +236,7 @@ if(isset($_REQUEST['dar-de-alta'])){
     if(valor=="Cancelar"){
       document.formUsuario.submit();
     }else{
-        console.log("Entre");
-        if (!document.formUsuario.nombre.value) {
+                if (!document.formUsuario.nombre.value) {
         document.getElementById("informacion").value = "Nombre requerido";
         document.formUsuario.nombre.focus();
         verificador=false;
@@ -250,18 +249,18 @@ if(isset($_REQUEST['dar-de-alta'])){
         document.formUsuario.rut.focus();
         verificador=false;
       } else if (!document.formUsuario.correo.value||document.formUsuario.correo.value) {
-          if (!expr.test(document.formUsuario.correo.value)  ) {
-            document.formUsuario.correo.value="";
+        if (!expr.test(document.formUsuario.correo.value)  ) {
+          document.formUsuario.correo.value="";
+          document.formUsuario.correo.focus();
+          document.getElementById("informacion").value = "Formato invalido";
+          verificador=false;
+        }else{
+          if(!document.formUsuario.correo.value){
             document.formUsuario.correo.focus();
-            document.getElementById("informacion").value = "Formato invalido";
-            verificador=false;
-          }else{
-            if(!document.formUsuario.correo.value){
-              document.formUsuario.correo.focus();
-              document.getElementById("informacion").value = "Correo requerido";
-              verificador=false;              
-            }
+            document.getElementById("informacion").value = "Correo requerido";
+            verificador=false;              
           }
+        }
       } else if (!document.formUsuario.clave.value) {
         document.getElementById("informacion").value = "Clave requerida";
         document.formUsuario.clave.focus();
@@ -278,24 +277,25 @@ if(isset($_REQUEST['dar-de-alta'])){
         document.getElementById("informacion").value = "Seleccione su estado";
         document.formUsuario.estado.focus();
         verificador=false;
-      }/* else if (!document.formUsuario.foto.value) {
+      /*} else if (!document.formUsuario.foto.value) {
         alert("Debes incluír una foto en tu perfil");
         document.formUsuario.foto.focus();
         verificador=false;
-      }*/else if (!document.formUsuario.direccion.value) {
+    */} if (!document.formUsuario.direccion.value) {
+        console.log(valor);
         document.getElementById("informacion").value = "Direccion requerida";
         document.formUsuario.direccion.focus();
         verificador=false;
-      } else if (!document.formUsuario.ciudad.option.value) {
+      } else if (!document.formUsuario.ciudad.value) {
         document.getElementById("informacion").value = "Ciudad requerida";
         document.formUsuario.ciudad.focus();
         verificador=false;
       } else if (!document.formUsuario.nacimiento.value||document.formUsuario.nacimiento.value==="dd-mm-aaaa") {
-        document.getElementById("informacion").value = "A&ntile;o de nacimiento requerido";
+        document.getElementById("informacion").value = "Año de nacimiento requerido";
         document.formUsuario.nacimiento.focus();
-        verificador=false;        
-      }  else if (!document.formUsuario.numerofono.value && !document.formUsuario.numerocasa.value) {
-        document.getElementById("informacion").value = "N&uacute;mero requerido";
+        verificador=false;  
+      } else if (!document.formUsuario.numerofono.value && !document.formUsuario.numerocasa.value) {
+        document.getElementById("informacion").value = "Un numero requerido";
         document.formUsuario.numerofono.focus();
         verificador=false; 
       } else if (!document.formUsuario.genero.value) {
@@ -311,7 +311,10 @@ if(isset($_REQUEST['dar-de-alta'])){
         document.formUsuario.tipousuario.focus();
         verificador=false;                         
       }
-      if(verificador&&valor=='Modificar'){
+      if(!valor){
+        verificador = false;
+      }
+      if(verificador&&valor==='Modificar'){
         document.formUsuario.submit();
       } 
     }

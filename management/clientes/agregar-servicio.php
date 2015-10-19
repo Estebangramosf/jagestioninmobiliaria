@@ -5,13 +5,9 @@ if (session_status() == PHP_SESSION_NONE) {
     $tituloPagina = "Agregar Servicio";
     $pagina = "venta";
     include('inc/header.php');
-
-
       //include('inc/carousel.php') ?>
-            <!-- Registro -->
-   
+            <!-- Registro -->   
     <div id="content" class="container">
-    
         <article class="row">
           <article class="body">
           <h2>- Agregar Servicio -</h2>
