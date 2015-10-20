@@ -60,19 +60,20 @@ if (isset($_SESSION['sesionActiva'])&&($_SESSION['tipoSesion']=="1"||$_SESSION['
           js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.3";
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
-
+        /*
         static function validaRut ( $rutCompleto ) {
           if ( !preg_match("/^[0-9]+-[0-9kK]{1}/",$rutCompleto)) return false;
           $rut = explode('-', $rutCompleto);
           return strtolower($rut[1]) == Helper::dv($rut[0]);
         }
+        
         static function dv ( $T ) {
           $M=0;$S=1;
           for(;$T;$T=floor($T/10))
             $S=($S+$T%10*(9-$M++%6))%11;
           return $S?$S-1:'k';
         }        
-
+        */
       </script>
         <!-- Fin Script del pluguin facebook -->
   </head>

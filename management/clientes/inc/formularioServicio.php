@@ -2,6 +2,7 @@
 if(isset($_SESSION['sesionActiva'])){
 	/*echo $_SESSION["tipoSesion"];
 	echo $_SESSION["sesionClave"];*/
+  date_default_timezone_set('Chile/Continental');  
   $nowDate = new DateTime();
   $nowTime = new DateTime();
   //echo $now->format('Y-m-d H:i:s');    // MySQL datetime format
@@ -17,30 +18,23 @@ if(isset($_SESSION['sesionActiva'])){
     </article>
     <!-- /Campo id -->
     <!-- Campo categoria -->
-    <div class="form-group col-xs-6">   
+    <article class="form-group col-xs-6">   
       <label>Seleccione categor&iacute;a</label>
-      <select name="tipo" multiple class="form-control">
-        <option id="tipo_1" onclick="validarServicio()" value="1">Venta de Casas</option>
-        <option id="tipo_2" onclick="validarServicio()" value="2">Venta de Departamentos</option>
-        <option id="tipo_3" onclick="validarServicio()" value="3">Venta de Terrenos</option>
-        <option id="tipo_4" onclick="validarServicio()" value="4">Arriendo de Casas</option>
-        <option id="tipo_5" onclick="validarServicio()" value="5">Arriendo de Departamentos</option>
+      <select name="tipo" class="form-control" onclick="validarServicio()">
+        <option id="tipo_1" value="1">Venta de Casas</option>
+        <option id="tipo_2" value="2">Venta de Departamentos</option>
+        <option id="tipo_3" value="3">Venta de Terrenos</option>
+        <option id="tipo_4" value="4">Arriendo de Casas</option>
+        <option id="tipo_5" value="5">Arriendo de Departamentos</option>
       </select>
-    </div>
-    <!-- /Campo categoria -->     
-    <!-- Campo titulo del servicio -->  
-    <article class="form-group col-xs-6">
-      <label>T&iacute;tulo del servicio</label>             
-      <input maxlength="30" name="titulo" type="text" required="" class="form-control input-sm" id="titulo" placeholder="Ej: Se vende.." data-validation-required-message="Ingrese t&iacute;tulo del servicio." value="" >
-      <p class="help-block text-danger"></p>
     </article>
-    <!-- /Campo titulo del servicio -->
+    <!-- /Campo categoria -->     
     <!-- Campo comuna -->
-    <div class="form-group col-xs-6">   
+    <article class="form-group col-xs-6">   
       <label>Indique Comuna</label>                
-      <select name="ciudad" multiple class="form-control">
+      <select name="comuna" class="form-control" onclick="validarServicio()">
         <?php                
-          $ciudades = array(
+          $comunas = array(
             0=>"Antofagasta",
             1=>"Iquique",
             2=>"Calama",
@@ -50,84 +44,99 @@ if(isset($_SESSION['sesionActiva'])){
             6=>"Region Metropolitana");
           for ($city=0;$city<7;$city++){                       
             ?>
-            <option id="genero_<php echo $city; ?>" onbLur="validarDatosContacto()" <?php if ($_SESSION["sesionCiudad"]==$ciudades[$city]){echo 'selected';} echo '>'.$ciudades[$city]; ?></option>';
+            <option id="comuna_<php echo $city; ?>"><?php echo $comunas[$city]; ?></option>';
           <?php }
         ?>                  
       </select>
-    </div>        
+    </article>
+    <!--         
     <article class="form-group col-xs-6">
       <label>Comuna</label>              
       <input maxlength="30" name="comuna" type="text" required="" class="form-control input-sm" id="comuna" placeholder="Comuna *" data-validation-required-message="Ingrese comuna del servicio." value="" >
       <p class="help-block text-danger"></p>
     </article>     
-    <!-- /Campo comuna -->
+    -->
+    <!-- /Campo comuna -->    
+    <!-- Campo titulo del servicio -->  
+    <article class="form-group col-md-12">
+      <label>T&iacute;tulo del servicio</label>             
+      <input maxlength="30" name="titulo" type="text" onbLur="validarServicio()" style="text-align:center;" required="" class="form-control input-lg" id="titulo" placeholder="Ej: Se vende.." data-validation-required-message="Ingrese t&iacute;tulo del servicio." value="" >
+      <p class="help-block text-danger"></p>
+    </article>
+    <!-- /Campo titulo del servicio -->
     <!-- Campo descripcion introductoria -->
-    <article class="form-group">
+    <article class="form-group col-xs-12">
       <label>Descripci&oacute;n introductoria</label>
-      <textarea maxlength="99" rows="1" name="introDescripcion" type="text" required="" class="form-control input-sm" id="introDescripcion" placeholder="Descripci&oacute;n introductiva *" data-validation-required-message="Ingrese una breve descripci&oacute;n." value=""></textarea>
+      <textarea maxlength="99" rows="2" name="introDescripcion" onbLur="validarServicio()" type="text" required="" class="form-control input-sm" id="introDescripcion" placeholder="Descripci&oacute;n introductiva *" data-validation-required-message="Ingrese una breve descripci&oacute;n." value=""></textarea>
       <p class="help-block text-danger"></p>
     </article>
     <!-- /Campo descripcion introductoria -->
     <!-- Campo descripcion completa -->
-    <article class="form-group">
+    <article class="form-group col-xs-12">
       <label>Descripci&oacute;n completa</label>
-      <textarea maxlength="499" rows="6" name="descripcion" type="textarea" required="" class="form-control input-sm" id="descripcion" placeholder="Descripcion completa *" data-validation-required-message="Ingrese descripci&oacute;n del servicio." value=""></textarea>
+      <textarea maxlength="499" rows="6" name="descripcion" onbLur="validarServicio()" type="textarea" required="" class="form-control input-sm" id="descripcion" placeholder="Descripcion completa *" data-validation-required-message="Ingrese descripci&oacute;n del servicio." value=""></textarea>
       <p class="help-block text-danger"></p>
     </article>
     <!-- /Campo descripcion completa -->
     <!-- Campo precio -->
     <article class="form-group col-xs-6">
       <label>Precio $</label>
-      <input maxlength="12" name="precio" type="number" required="" class="form-control input-sm" id="precio" placeholder="Ej: 200000" data-validation-required-message="Ingrese precio." value="" >
+      <input maxlength="12" name="precio" type="number" onbLur="formatoPesos(this.value)" onkeyup="" required="" class="form-control input-sm" id="precio" placeholder="Ej: 200000" data-validation-required-message="Ingrese precio." value="" >
       <p class="help-block text-danger"></p>
     </article>
     <!-- /Campo precio -->
     <!-- Campo descuento -->
     <article class="form-group col-xs-6">
       <label>Descuento $</label>              
-      <input maxlength="12" name="descuentoPrecio" type="number" required="" class="form-control input-sm" id="descuentoPrecio" placeholder="Ej: 300000" data-validation-required-message="Ingrese descuento del servicio." value="" >
+      <input maxlength="12" name="descuentoPrecio" type="number" onbLur="validarServicio()" required="" class="form-control input-sm" id="descuentoPrecio" placeholder="Ej: 300000" data-validation-required-message="Ingrese descuento del servicio." value="" >
       <p class="help-block text-danger"></p>
     </article>          
     <!-- /Campo descuento -->    
     <!-- Campo dormitorios -->
     <article  class="form-group col-xs-6">
       <label>Dormitorios</label>              
-      <input maxlength="4" name="dormitorios" type="number" required="" class="form-control input-sm" id="dormitorios" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de dormitorios." value="" >
+      <input maxlength="1" name="dormitorios" type="number" onbLur="validarServicio()" required="" class="form-control input-sm" id="dormitorios" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de dormitorios." value="" >
       <p class="help-block text-danger"></p>
     </article>
     <!-- /Campo dormitorios -->
     <!-- Campo banos -->
     <article  class="form-group col-xs-6">
       <label>Ba&ntilde;os</label>              
-      <input maxlength="4" name="banos" type="number" required="" class="form-control input-sm" id="banos" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de ba&ntilde;os." value="" >
+      <input maxlength="1" name="banos" type="number" onbLur="validarServicio()" required="" class="form-control input-sm" id="banos" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de ba&ntilde;os." value="" >
       <p class="help-block text-danger"></p>
     </article>
     <!-- /Campo banos -->
     <!-- Campo estacionamientos -->
     <article  class="form-group col-xs-6">
       <label>Estacionamientos</label>              
-      <input maxlength="3" name="estacionamientos" type="number" required="" class="form-control input-sm" id="estacionamientos" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de estacionamientos." value="" >
+      <input maxlength="1" name="estacionamientos" type="number" onbLur="validarServicio()" required="" class="form-control input-sm" id="estacionamientos" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de estacionamientos." value="" >
       <p class="help-block text-danger"></p>
     </article>      
     <!-- /Campo estacionamientos -->
     <!-- Campo superficie -->    
     <article class="form-group col-xs-6">
       <label>Superficie</label>              
-      <input maxlength="10" name="superficie" type="number" required="" class="form-control input-sm" id="superficie" placeholder="Ej: 250" data-validation-required-message="Ingrese dimensi&oacute;n." value="" >
+      <input maxlength="4" name="superficie" type="number" onbLur="validarServicio()" required="" class="form-control input-sm" id="superficie" placeholder="Ej: 250" data-validation-required-message="Ingrese dimensi&oacute;n." value="" >
       <p class="help-block text-danger"></p>
     </article>
     <!-- Campo superficie -->
     <!-- Campo fecha publicacion -->
     <article class="form-group col-xs-6">
+      <label>Fecha de publicaci&oacute;n</label>
+      <input class="form-control" type="date" onbLur="validarServicio()" name="fechaPublicacion" id="fechaPublicacion" step="3" placeholder="dia/mes/a&ntilde;o" data-validation-required-message="Ingrese fecha de publicacion" min="<?php echo $nowDate->format('Y-m-d'); ?>" max="<?php echo $nowDate->format('Y-m-d'); ?>" value="<?php echo $nowDate->format('Y-m-d');?>">                          
+    </article>    
+<!--    
+    <article class="form-group col-xs-6">
       <label>Fecha publicaci&oacute;n</label>              
-      <input maxlength="20" name="fechaPublicacion" type="text" required="" class="form-control input-sm" id="fechaPublicacion" placeholder="dia/mes/a&ntilde;o" data-validation-required-message="Ingrese cantidad de dormitorios." value="<?php echo $nowDate->format('d-m-Y'); ?>" >
+      <input maxlength="20" name="fechaPublicacion" type="text" required="" class="form-control input-sm" id="fechaPublicacion"  value="<?php echo $nowDate->format('Y-m-d'); ?>" >
       <p class="help-block text-danger"></p>
     </article>
+-->    
     <!-- Campo fecha publicacion -->
     <!-- Campo hora publicacion -->
     <article class="form-group col-xs-6">
       <label>Hora Publicaci&oacute;n</label>              
-      <input maxlength="10" name="horaPublicacion" type="text" required="" class="form-control input-sm" id="horaPublicacion" placeholder="Ej: 18:00" data-validation-required-message="Ingrese cantidad de dormitorios." value="<?php echo $nowTime->format('H:i:s'); ?>" >
+      <input maxlength="10" name="horaPublicacion" type="time" onbLur="validarServicio()" required="" class="form-control input-sm" id="horaPublicacion" placeholder="Ej: 18:00" data-validation-required-message="Ingrese hora de publicacion" value="<?php echo $nowTime->format('H:i:s'); ?>" >
       <p class="help-block text-danger"></p>
     </article>
     <!-- /Campo hora publicacion -->
@@ -137,7 +146,7 @@ if(isset($_SESSION['sesionActiva'])){
         echo  '
               <article class="form-group">
                 <label>Link Imagen N '.$i.'</label>              
-                <input maxlength="500" name="imagen'.$i.'" type="text" required="" class="form-control input-sm" id="imagen'.$i.'" placeholder="Link Imagen '.$i.' *" data-validation-required-message="Ingrese el link de la Imagen '.$i.'." value="" >
+                <input maxlength="500" name="imagen'.$i.'" type="text" required="" onbLur="validarServicio()" class="form-control input-sm" id="imagen'.$i.'" placeholder="Link Imagen '.$i.' *" data-validation-required-message="Ingrese el link de la Imagen '.$i.'." value="" >
                 <p class="help-block text-danger"></p>
                 <input type="checkbox" name="sinImagen'.$i.'" id="sinImagen'.$i.'" value="sinImagen'.$i.'" class="checkbox-inline" onclick="validarSinImagen(this.value)" /> Sin imagen temporalmente.
                 <input type="checkbox" name="marcarRestantes" id="marcarRestantes'.$i.'" value="'.$i.'" class="checkbox-inline" onclick="marcarRestantesSinImagen(this.value)" /> Marcar restantes.                
@@ -238,6 +247,23 @@ if(isset($_SESSION['sesionActiva'])){
     <!-- /Campo tipousuario -->
   </form>
 <script>
+function formatoPesos(valor){
+  valor = valor||'';
+  var centesimos = '';
+  var milesimos = '';
+  var millonesimos = '';
+  if (valor.length<2){
+    console.log(valor.slice(2,5)); 
+  }
+  //console.log(valor);
+  var arreglo = [valor.toString()];
+  console.log(arreglo);
+  //arreglo = arreglo.join(",");
+  //arreglo = arreglo.split(",");
+  //console.log(arreglo);
+  console.log(precio);
+
+}
 function validarServicio(valor){
   if (document.formServicio.tipo.value == 3){
     document.getElementById("dormitorios").disabled = true;

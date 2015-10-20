@@ -2,103 +2,113 @@
 if(isset($_SESSION['sesionActiva'])){
 	/*echo $_SESSION["tipoSesion"];
 	echo $_SESSION["sesionClave"];*/
+  date_default_timezone_set('Chile/Continental');  
+  $nowDate = new DateTime();
+  $nowTime = new DateTime();  
 ?>
   <form name="formServicio" method="post" action="inc/procesaInformacionServicio.php" enctype="application/x-www-form-urlencoded">
+    <!-- Campo id -->
     <article class="form-group">                
       <input name="id" type="hidden" required="" class="form-control" id="id" placeholder="Tu ID *" data-validation-required-message="Ingrese su id." value="<?php echo $datos['srvc_id']; ?>" >
       <p class="help-block text-danger"></p>
     </article>
-    <label>Categor&iacute;a</label>              
-    <article class="radio">
-      <label>
-        <input type="radio" name="tipo" id="tipo_1" value="1" onclick="validarServicio(this.value)" <?php if ($datos['srvc_tipo']==1){echo 'checked';}?>>
-        <strong>Venta de Casas</strong>
-      </label>
+    <!-- /Campo id -->
+    <!-- Campo categoria -->
+    <article class="form-group col-xs-6">   
+      <label>Seleccione categor&iacute;a</label>
+      <select name="tipo" multiple class="form-control" size="5%">
+        <option id="tipo_1" onclick="validarServicio()" <?php if ($datos['srvc_tipo']==1){echo 'selected';}?> value="1">Venta de Casas</option>
+        <option id="tipo_2" onclick="validarServicio()" <?php if ($datos['srvc_tipo']==2){echo 'selected';}?> value="2">Venta de Departamentos</option>
+        <option id="tipo_3" onclick="validarServicio()" <?php if ($datos['srvc_tipo']==3){echo 'selected';}?> value="3">Venta de Terrenos</option>
+        <option id="tipo_4" onclick="validarServicio()" <?php if ($datos['srvc_tipo']==4){echo 'selected';}?> value="4">Arriendo de Casas</option>
+        <option id="tipo_5" onclick="validarServicio()" <?php if ($datos['srvc_tipo']==5){echo 'selected';}?> value="5">Arriendo de Departamentos</option>
+      </select>
     </article>
-    <article class="radio">
-      <label>
-        <input type="radio" name="tipo" id="tipo_2" value="2" onclick="validarServicio(this.value)" <?php if ($datos['srvc_tipo']==2){echo 'checked';}?>>
-        <strong>Venta de Departamentos</strong>
-      </label>
-    </article>  
-    <article class="radio">
-      <label>
-        <input type="radio" name="tipo" id="tipo_3" value="3" onclick="validarServicio(this.value)" <?php if ($datos['srvc_tipo']==3){echo 'checked';}?>>
-        <strong>Venta de Terrenos</strong>
-      </label>
-    </article>
-    <article class="radio">
-      <label>
-        <input type="radio" name="tipo" id="tipo_4" value="4" onclick="validarServicio(this.value)" <?php if ($datos['srvc_tipo']==4){echo 'checked';}?>>
-        <strong>Arriendo de Casas</strong>
-      </label>
-    </article>  
-    <article class="radio">
-      <label>
-        <input type="radio" name="tipo" id="tipo_5" value="5" onclick="validarServicio(this.value)" <?php if ($datos['srvc_tipo']==5){echo 'checked';}?>>
-        <strong>Arriendo de Departamentos</strong>
-      </label>
-    </article>       
+    <!-- /Campo categoria -->     
+    <!-- Campo titulo del servicio -->
     <article class="form-group col-xs-6">
       <label>T&iacute;tulo del servicio</label>             
       <input maxlength="30" name="titulo" type="text" required="" class="form-control input-sm" id="titulo" placeholder="Ej: Se vende.." data-validation-required-message="Ingrese t&iacute;tulo del servicio." value="<?php echo $datos['srvc_titulo']; ?>" >
       <p class="help-block text-danger"></p>
     </article>
+    <!-- Campo comuna -->
     <article class="form-group col-xs-6">
       <label>Comuna</label>              
       <input maxlength="30" name="comuna" type="text" required="" class="form-control input-sm" id="comuna" placeholder="Comuna *" data-validation-required-message="Ingrese comuna del servicio." value="<?php echo $datos['srvc_comuna']; ?>" >
       <p class="help-block text-danger"></p>
-    </article>      
+    </article>
+    <!-- /Campo comuna -->      
+    <!-- Campo descripcion introductoria -->
     <article class="form-group">
       <label>Descripci&oacute;n introductoria</label>
       <textarea maxlength="99" rows="1" name="introDescripcion" type="text" required="" class="form-control input-sm" id="introDescripcion" placeholder="Descripci&oacute;n introductiva *" data-validation-required-message="Ingrese una breve descripci&oacute;n." value="" ><?php echo $datos['srvc_introDescripcion']; ?></textarea>
       <p class="help-block text-danger"></p>
     </article>
+    <!-- /Campo descripcion introductoria -->
+    <!-- Campo descripcion completa -->
     <article class="form-group">
       <label>Descripci&oacute;n completa</label>
       <textarea maxlength="499" rows="6" name="descripcion" type="text" required="" class="form-control input-sm" id="descripcion" placeholder="Descripcion completa *" data-validation-required-message="Ingrese descripci&oacute;n del servicio." value=""><?php echo $datos['srvc_descripcion']; ?></textarea
       <p class="help-block text-danger"></p>
     </article>
+    <!-- /Campo descripcion completa -->
+    <!-- Campo precio -->
     <article class="form-group col-xs-6">
       <label>Precio $</label>
       <input maxlength="12" type="number" name="precio" required="" class="form-control input-sm" id="precio" placeholder="Ej: 200000" data-validation-required-message="Ingrese precio." value="<?php echo $datos['srvc_precio']; ?>" >
       <p class="help-block text-danger"></p>
     </article>
+    <!-- /Campo precio -->
+    <!-- Campo descuento -->
     <article class="form-group col-xs-6">
       <label>Descuento $</label>              
       <input maxlength="12" type="number" name="descuentoPrecio" required="" class="form-control input-sm" id="descuentoPrecio" placeholder="Ej: 300000" data-validation-required-message="Ingrese descuento del servicio." value="<?php echo $datos['srvc_descuentoPrecio']; ?>" >
       <p class="help-block text-danger"></p>
     </article>              
+    <!-- /Campo descuento -->
+    <!-- Campo dormitorios -->
     <article class="form-group col-xs-6">
       <label>Dormitorios</label>              
       <input maxlength="4" type="number" name="dormitorios" required="" class="form-control input-sm" id="dormitorios" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de dormitorios." value="<?php echo $datos['srvc_dormitorios']; ?>" >
       <p class="help-block text-danger"></p>
     </article>
+    <!-- /Campo dormitorios -->
+    <!-- Campo banos -->
     <article class="form-group col-xs-6">
       <label>Ba&ntilde;os</label>              
       <input maxlength="4" name="banos" type="number" required="" class="form-control input-sm" id="banos" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de ba&ntilde;os." value="<?php echo $datos['srvc_banos']; ?>" >
       <p class="help-block text-danger"></p>
     </article>
+    <!-- /Campo banos -->
+    <!-- Campo estacionamientos -->
     <article class="form-group col-xs-6">
       <label>Estacionamientos</label>              
       <input maxlength="3" name="estacionamientos" type="number" required="" class="form-control input-sm" id="estacionamientos" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de estacionamientos." value="<?php echo $datos['srvc_estacionamientos']; ?>" >
       <p class="help-block text-danger"></p>
     </article>      
+    <!-- /Campo estacionamientos -->
+    <!-- Campo superficie -->
     <article class="form-group col-xs-6">
       <label>Superficie</label>              
       <input maxlength="10" name="superficie" type="number" required="" class="form-control input-sm" id="superficie" placeholder="Ej: 250" data-validation-required-message="Ingrese dimensi&oacute;n." value="<?php echo $datos['srvc_superficie']; ?>" >
       <p class="help-block text-danger"></p>
     </article>
+    <!-- /Campo superficie -->
+    <!-- Campo fecha publicacion -->
     <article class="form-group col-xs-6">
       <label>Fecha publicaci&oacute;n</label>              
-      <input maxlength="20" name="fechaPublicacion" type="text" required="" class="form-control input-sm" id="fechaPublicacion" placeholder="dia/mes/a&ntilde;o" data-validation-required-message="Ingrese cantidad de dormitorios." value="<?php echo $datos['srvc_fechaPublicacion']; ?>" >
+      <input maxlength="20" name="fechaPublicacion" type="date" required="" min="<?php echo $nowDate->format('Y-m-d'); ?>" max="<?php echo $nowDate->format('Y-m-d'); ?>" class="form-control input-sm" id="fechaPublicacion" placeholder="dia/mes/a&ntilde;o" data-validation-required-message="Ingrese cantidad de dormitorios." value="<?php echo $datos['srvc_fechaPublicacion']; ?>" >
       <p class="help-block text-danger"></p>
     </article>
+    <!-- /Campo fecha publicacion -->
+    <!-- Campo hora publicacion -->    
     <article class="form-group col-xs-6">
       <label>Hora Publicaci&oacute;n</label>              
-      <input maxlength="10" name="horaPublicacion" type="text" required="" class="form-control input-sm" id="horaPublicacion" placeholder="Ej: 18:00" data-validation-required-message="Ingrese cantidad de dormitorios." value="<?php echo $datos['srvc_horaPublicacion']; ?>" >
+      <input maxlength="10" name="horaPublicacion" type="time" required="" class="form-control input-sm" id="horaPublicacion" placeholder="Ej: 18:00" data-validation-required-message="Ingrese cantidad de dormitorios." value="<?php echo $datos['srvc_horaPublicacion']; ?>" >
       <p class="help-block text-danger"></p>
     </article>  
+    <!-- /Campo hora publicacion -->
+    <!-- Campo de imagenes 1..10 -->
     <?php 
       for ($i=1;$i<=10;$i++) {
         echo  '
@@ -112,7 +122,9 @@ if(isset($_SESSION['sesionActiva'])){
               '
         ;
       }
-    ?>           
+    ?>       
+    <!-- /Campo de imagenes 1..10 -->    
+
     <!--<article class="form-group">
       <label>Link Imagen N1</label>              
       <input maxlength="500" name="imagen1" type="text" required="" class="form-control input-sm" id="imagen1" placeholder="Link Imagen 1 *" data-validation-required-message="Ingrese el link de la Imagen 1." value="<?php echo $datos['srvc_imagen1']; ?>" >
