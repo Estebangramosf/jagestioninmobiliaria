@@ -22,7 +22,7 @@
   include('inc/header.php');
   include('inc/carousel.php'); 
 ?>
-<script type="text/javascript">
+<script>
   $('body,html').animate({scrollTop: $(document).height(1200);}, 1000);
 </script>
 <div id="contentIn" class="container">  

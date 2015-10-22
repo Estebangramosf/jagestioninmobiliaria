@@ -57,16 +57,11 @@
 <div id="IrArriba" style="display: block;">
   <a href="#Arriba"><span class="glyphicon glyphicon-collapse-up"></span></a>
 </div>
-<div id="IrAbajo" style="display: block;">
-  <a href="#Abajo"><span class="glyphicon glyphicon-collapse-down"></span></a>
-</div>
 <script type="text/javascript">
 //<![CDATA[
 // Botón para Ir Arriba
 jQuery.noConflict();
 jQuery(document).ready(function() {
-  
-  
   jQuery("#IrArriba").hide();
   jQuery(function () {
     jQuery(window).scroll(function () {
@@ -76,23 +71,11 @@ jQuery(document).ready(function() {
         jQuery('#IrArriba').fadeOut();
       }
     });
-    jQuery(window).scroll(function () {
-      if (jQuery(this).scrollTop() < 1000 ) {
-        jQuery('#IrAbajo').fadeIn();
-      } else {
-        jQuery('#IrAbajo').fadeOut();
-      }
-    });    
     jQuery('#IrArriba a').click(function () {
       jQuery('body,html').animate({
       scrollTop: 0}, 650);
       return false;
-    });
-    jQuery('#IrAbajo').click(function () {
-      jQuery('body,html').animate({
-      scrollTop: $(document).height(1200)}, 650);
-      return false;
-    });    
+    });  
   });
 });
 //]]>
