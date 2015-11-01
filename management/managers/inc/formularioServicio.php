@@ -1,7 +1,8 @@
 <?php 
 if(isset($_SESSION['sesionActiva'])){
-	/*echo $_SESSION["tipoSesion"];
-	echo $_SESSION["sesionClave"];*/
+  /*echo $_SESSION["tipoSesion"];
+  echo $_SESSION["sesionClave"];*/
+  date_default_timezone_set('Chile/Continental');  
   $nowDate = new DateTime();
   $nowTime = new DateTime();
   //echo $now->format('Y-m-d H:i:s');    // MySQL datetime format
@@ -10,135 +11,144 @@ if(isset($_SESSION['sesionActiva'])){
   //echo $nowDate->getTimestamp();    
 ?>
   <form name="formServicio" method="post" action="inc/procesaInformacionServicio.php" enctype="application/x-www-form-urlencoded">
+    <!-- Campo id -->
     <article class="form-group">                
       <input name="id" type="hidden" required="" class="form-control" id="id" placeholder="Tu ID *" data-validation-required-message="Ingrese su id." value="" >
       <p class="help-block text-danger"></p>
     </article>
-    <label>Categor&iacute;a</label>              
-    <table border="0">
-    <tr>
-      <td>
-        <input type="radio" name="tipo" id="tipo_1" value="1" onclick="validarServicio(this.value)">
-        <strong>Venta de Casas</strong>
-      </td>
-      <td>:</td>
-      <td>
-        Prepara el formulario para el registro de la <strong>venta</strong> de una propiedad.      
-        <hr>
-      </td>      
-    </tr>
-    <tr>
-      <td>
-        <input type="radio" name="tipo" id="tipo_2" value="2" onclick="validarServicio(this.value)">
-        <strong>Venta de Departamentos</strong>
-      </td>
-      <td>:</td>
-      <td>
-        Prepara el formulario para el registro de la <strong>venta</strong> de un departamento.
-        <hr>
-      </td>
-    </tr>
-      <tr>
-        <td>
-        <input type="radio" name="tipo" id="tipo_3" value="3" onclick="validarServicio(this.value)">
-        <strong>Venta de Terrenos</strong>
-        </td>
-        <td>:</td>
-        <td>
-          Prepara el formulario para el registro de la <strong>venta</strong> de un terreno.
-          <hr>
-        </td>
-      </tr>
-      <tr>
-        <td>
-        <input type="radio" name="tipo" id="tipo_4" value="4" onclick="validarServicio(this.value)">
-        <strong>Arriendo de Casas</strong>
-        </td>
-        <td>:</td>
-        <td>
-          Prepara el formulario para el registro del <strong>arriendo</strong> de una propiedad.
-          <hr>
-        </td>
-      </tr>
-      <tr>
-        <td>
-        <input type="radio" name="tipo" id="tipo_5" value="5" onclick="validarServicio(this.value)">
-        <strong>Arriendo de Departamentos</strong>
-        </td>
-        <td>:</td>
-        <td>
-          Prepara el formulario para el registro del <strong>arriendo</strong> de un departamento.
-          <hr>
-        </td>
-      </tr>
-    </table>         
-    <br /><br />      
-    <article class="form-group col-xs-6">
+    <!-- /Campo id -->
+
+    <!-- Campo titulo del servicio -->  
+    <article class="form-group col-md-12">
       <label>T&iacute;tulo del servicio</label>             
-      <input maxlength="30" name="titulo" type="text" required="" class="form-control input-sm" id="titulo" placeholder="Ej: Se vende.." data-validation-required-message="Ingrese t&iacute;tulo del servicio." value="" >
+      <input maxlength="30" name="titulo" type="text" onbLur="validarServicio()" style="text-align:center;" required="" class="form-control input-lg" id="titulo" placeholder="Ej: Se vende.." data-validation-required-message="Ingrese t&iacute;tulo del servicio." value="" >
       <p class="help-block text-danger"></p>
     </article>
+    <!-- /Campo titulo del servicio -->
+    <!-- Campo categoria -->
+    <article class="form-group col-xs-12">   
+      <label>Seleccione categor&iacute;a</label>
+      <select name="tipo"  class="form-control" onclick="validarServicio()">
+        <option id="tipo_1" value="1">Venta de Casas</option>
+        <option id="tipo_2" value="2">Venta de Departamentos</option>
+        <option id="tipo_3" value="3">Venta de Terrenos</option>
+        <option id="tipo_4" value="4">Arriendo de Casas</option>
+        <option id="tipo_5" value="5">Arriendo de Departamentos</option>
+      </select>
+    </article>
+    <!-- /Campo categoria -->    
+    <br> 
+    <!-- Campo comuna -->
+    <article class="form-group col-xs-12">   
+      <label>Indique Comuna</label>                
+      <select name="comuna"  class="form-control" onclick="validarServicio()">
+        <?php                
+          $comunas = array(
+            0=>"Antofagasta",
+            1=>"Iquique",
+            2=>"Calama",
+            3=>"La Serena",
+            4=>"Coquimbo",
+            5=>"Valparaiso",
+            6=>"Region Metropolitana");
+          for ($city=0;$city<7;$city++){                       
+            ?>
+            <option id="comuna_<php echo $city; ?>"><?php echo $comunas[$city]; ?></option>';
+          <?php }
+        ?>                  
+      </select>
+    </article>
+    <!--         
     <article class="form-group col-xs-6">
       <label>Comuna</label>              
       <input maxlength="30" name="comuna" type="text" required="" class="form-control input-sm" id="comuna" placeholder="Comuna *" data-validation-required-message="Ingrese comuna del servicio." value="" >
       <p class="help-block text-danger"></p>
     </article>     
-    <article class="form-group">
+    -->
+    <!-- /Campo comuna -->        
+    <!-- Campo descripcion introductoria -->
+    <article class="form-group col-xs-12">
       <label>Descripci&oacute;n introductoria</label>
-      <textarea maxlength="99" rows="1" name="introDescripcion" type="text" required="" class="form-control input-sm" id="introDescripcion" placeholder="Descripci&oacute;n introductiva *" data-validation-required-message="Ingrese una breve descripci&oacute;n." value=""></textarea>
+      <textarea maxlength="99" rows="2" name="introDescripcion" onbLur="validarServicio()" type="text" required="" class="form-control input-lg" id="introDescripcion" placeholder="Descripci&oacute;n introductiva *" data-validation-required-message="Ingrese una breve descripci&oacute;n." value=""></textarea>
       <p class="help-block text-danger"></p>
     </article>
-    <article class="form-group">
+    <!-- /Campo descripcion introductoria -->
+    <!-- Campo descripcion completa -->
+    <article class="form-group col-xs-12">
       <label>Descripci&oacute;n completa</label>
-      <textarea maxlength="499" rows="6" name="descripcion" type="textarea" required="" class="form-control input-sm" id="descripcion" placeholder="Descripcion completa *" data-validation-required-message="Ingrese descripci&oacute;n del servicio." value=""></textarea>
+      <textarea maxlength="499" rows="6" name="descripcion" onbLur="validarServicio()" type="textarea" required="" class="form-control input-lg" id="descripcion" placeholder="Descripcion completa *" data-validation-required-message="Ingrese descripci&oacute;n del servicio." value=""></textarea>
       <p class="help-block text-danger"></p>
     </article>
-    <article class="form-group col-xs-6">
+    <!-- /Campo descripcion completa -->
+    <!-- Campo precio -->
+    <article class="form-group col-xs-12">
       <label>Precio $</label>
-      <input maxlength="12" name="precio" type="number" required="" class="form-control input-sm" id="precio" placeholder="Ej: 200000" data-validation-required-message="Ingrese precio." value="" >
+      <input maxlength="12" name="precio" type="number" onbLur="formatoPesos(this.value)" onkeyup="" required="" class="form-control input-lg" id="precio" placeholder="Ej: 200000" data-validation-required-message="Ingrese precio." value="" >
       <p class="help-block text-danger"></p>
     </article>
-    <article class="form-group col-xs-6">
+    <!-- /Campo precio -->
+    <!-- Campo descuento -->
+    <article class="form-group col-xs-12">
       <label>Descuento $</label>              
-      <input maxlength="12" name="descuentoPrecio" type="number" required="" class="form-control input-sm" id="descuentoPrecio" placeholder="Ej: 300000" data-validation-required-message="Ingrese descuento del servicio." value="" >
+      <input maxlength="12" name="descuentoPrecio" type="number" onbLur="validarServicio()" required="" class="form-control input-lg" id="descuentoPrecio" placeholder="Ej: 300000" data-validation-required-message="Ingrese descuento del servicio." value="" >
       <p class="help-block text-danger"></p>
-    </article>              
+    </article>          
+    <!-- /Campo descuento -->    
+    <!-- Campo dormitorios -->
     <article  class="form-group col-xs-6">
       <label>Dormitorios</label>              
-      <input maxlength="4" name="dormitorios" type="number" required="" class="form-control input-sm" id="dormitorios" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de dormitorios." value="" >
+      <input maxlength="1" name="dormitorios" type="number" onbLur="validarServicio()" required="" class="form-control input-lg" id="dormitorios" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de dormitorios." value="" >
       <p class="help-block text-danger"></p>
     </article>
+    <!-- /Campo dormitorios -->
+    <!-- Campo banos -->
     <article  class="form-group col-xs-6">
       <label>Ba&ntilde;os</label>              
-      <input maxlength="4" name="banos" type="number" required="" class="form-control input-sm" id="banos" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de ba&ntilde;os." value="" >
+      <input maxlength="1" name="banos" type="number" onbLur="validarServicio()" required="" class="form-control input-lg" id="banos" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de ba&ntilde;os." value="" >
       <p class="help-block text-danger"></p>
     </article>
+    <!-- /Campo banos -->
+    <!-- Campo estacionamientos -->
     <article  class="form-group col-xs-6">
       <label>Estacionamientos</label>              
-      <input maxlength="3" name="estacionamientos" type="number" required="" class="form-control input-sm" id="estacionamientos" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de estacionamientos." value="" >
+      <input maxlength="1" name="estacionamientos" type="number" onbLur="validarServicio()" required="" class="form-control input-lg" id="estacionamientos" placeholder="Ej: 1, 2, etc." data-validation-required-message="Ingrese cantidad de estacionamientos." value="" >
       <p class="help-block text-danger"></p>
     </article>      
+    <!-- /Campo estacionamientos -->
+    <!-- Campo superficie -->    
     <article class="form-group col-xs-6">
       <label>Superficie</label>              
-      <input maxlength="10" name="superficie" type="number" required="" class="form-control input-sm" id="superficie" placeholder="Ej: 250" data-validation-required-message="Ingrese dimensi&oacute;n." value="" >
+      <input maxlength="4" name="superficie" type="number" onbLur="validarServicio()" required="" class="form-control input-lg" id="superficie" placeholder="Ej: 250" data-validation-required-message="Ingrese dimensi&oacute;n." value="" >
       <p class="help-block text-danger"></p>
     </article>
+    <!-- Campo superficie -->
+    <!-- Campo fecha publicacion -->
+    <article class="form-group col-xs-12">
+      <label>Fecha de publicaci&oacute;n</label>
+      <input class="form-control" type="date" onbLur="validarServicio()" name="fechaPublicacion" id="fechaPublicacion" step="3" placeholder="dia/mes/a&ntilde;o" data-validation-required-message="Ingrese fecha de publicacion" min="<?php echo $nowDate->format('Y-m-d'); ?>" max="<?php echo $nowDate->format('Y-m-d'); ?>" value="<?php echo $nowDate->format('Y-m-d');?>">                          
+    </article>    
+<!--    
     <article class="form-group col-xs-6">
       <label>Fecha publicaci&oacute;n</label>              
-      <input maxlength="20" name="fechaPublicacion" type="text" required="" class="form-control input-sm" id="fechaPublicacion" placeholder="dia/mes/a&ntilde;o" data-validation-required-message="Ingrese cantidad de dormitorios." value="<?php echo $nowDate->format('d-m-Y'); ?>" >
+      <input maxlength="20" name="fechaPublicacion" type="text" required="" class="form-control input-sm" id="fechaPublicacion"  value="<?php echo $nowDate->format('Y-m-d'); ?>" >
       <p class="help-block text-danger"></p>
     </article>
-    <article class="form-group col-xs-6">
+-->    
+    <!-- Campo fecha publicacion -->
+    <!-- Campo hora publicacion -->
+    <article class="form-group col-xs-12">
       <label>Hora Publicaci&oacute;n</label>              
-      <input maxlength="10" name="horaPublicacion" type="text" required="" class="form-control input-sm" id="horaPublicacion" placeholder="Ej: 18:00" data-validation-required-message="Ingrese cantidad de dormitorios." value="<?php echo $nowTime->format('H:i:s'); ?>" >
+      <input maxlength="10" name="horaPublicacion" type="time" onbLur="validarServicio()" required="" class="form-control input-sm" id="horaPublicacion" placeholder="Ej: 18:00" data-validation-required-message="Ingrese hora de publicacion" value="<?php echo $nowTime->format('H:i:s'); ?>" >
       <p class="help-block text-danger"></p>
     </article>
+    <!-- /Campo hora publicacion -->
+    <!-- Campo imagenes 1..10 -->
     <?php 
       for ($i=1;$i<=10;$i++) {
         echo  '
               <article class="form-group">
                 <label>Link Imagen N '.$i.'</label>              
-                <input maxlength="500" name="imagen'.$i.'" type="text" required="" class="form-control input-sm" id="imagen'.$i.'" placeholder="Link Imagen '.$i.' *" data-validation-required-message="Ingrese el link de la Imagen '.$i.'." value="" >
+                <input maxlength="500" name="imagen'.$i.'" type="text" required="" onbLur="validarServicio()" class="form-control input-sm" id="imagen'.$i.'" placeholder="Link Imagen '.$i.' *" data-validation-required-message="Ingrese el link de la Imagen '.$i.'." value="" >
                 <p class="help-block text-danger"></p>
                 <input type="checkbox" name="sinImagen'.$i.'" id="sinImagen'.$i.'" value="sinImagen'.$i.'" class="checkbox-inline" onclick="validarSinImagen(this.value)" /> Sin imagen temporalmente.
                 <input type="checkbox" name="marcarRestantes" id="marcarRestantes'.$i.'" value="'.$i.'" class="checkbox-inline" onclick="marcarRestantesSinImagen(this.value)" /> Marcar restantes.                
@@ -147,6 +157,7 @@ if(isset($_SESSION['sesionActiva'])){
         ;
       }
     ?>    
+    <!-- /Campo imagenes 1..10 -->
     <!--     
     <article class="form-group">
       <label>Link Imagen N1</label>              
@@ -209,29 +220,35 @@ if(isset($_SESSION['sesionActiva'])){
       <input type="checkbox" name="sinImagen10" id="sinImagen10" value="sinImagen10" class="checkbox-inline" onclick="validarSinImagen(this.value)" > Sin imagen temporalmente.
     </article>
     -->      
-<?php 
-  if ($_SESSION["tipoSesion"]=="1"||$_SESSION["tipoSesion"]=="10"||$_SESSION["tipoSesion"]=="100"){
-    echo '
-    <article class="btn-group btn-group-sm-6">
-      <input type="button" name="cancelar" class="btn btn-group-justified btn-warning btn-xs" id="submitButton" value="Cancelar" onclick = "validarDatosServicio(this.value)" />
-    </article>';         
-  }
-  if ($_SESSION["tipoSesion"]=="1"||$_SESSION["tipoSesion"]=="10"||$_SESSION["tipoSesion"]=="100"){
-    echo '
-    <!--<input type="button" name="eliminar" class="btn btn-group-justified btn-danger btn-xs" id="submitButton" value="Eliminar" onclick = "validarDatosServicio(this.value)" />  -->                  
-    <article class="btn-group btn-group-sm-6">
-      <input type="button" name="Agregar" class="btn btn-group-justified btn-success btn-xs" id="submitButton" value="Agregar" onclick = "validarDatosServicio(this.value)" />                  
-    </article>
-    ';
-  }
-?>
-      <input type="hidden" name="accion" id="accion" />
-      <input type="hidden" name="idSesion" id="idSesion" value="<?php echo $_SESSION['idSesion']; ?>" />
-      <input type="hidden" name="tipoUsuario" id="tipoUsuario" value="<?php echo $_SESSION['tipoSesion']; ?>" />
+    <!-- Botones submit -->
+    <?php 
+      if ($_SESSION["tipoSesion"]=="1"||$_SESSION["tipoSesion"]=="10"||$_SESSION["tipoSesion"]=="100"){
+        echo '
+        <article class="btn-group btn-group-sm-6">
+          <input type="button" name="cancelar" class="btn btn-group-justified btn-warning btn-xs" id="submitButton" value="Cancelar" onclick = "validarDatosServicio(this.value)" />
+        </article>';         
+      }
+      if ($_SESSION["tipoSesion"]=="1"||$_SESSION["tipoSesion"]=="10"||$_SESSION["tipoSesion"]=="100"){
+        echo '
+        <!--<input type="button" name="eliminar" class="btn btn-group-justified btn-danger btn-xs" id="submitButton" value="Eliminar" onclick = "validarDatosServicio(this.value)" />  -->                  
+        <article class="btn-group btn-group-sm-6">
+          <input type="button" name="Agregar" class="btn btn-group-justified btn-success btn-xs" id="submitButton" value="Agregar" onclick = "validarDatosServicio(this.value)" />                  
+        </article>
+        ';
+      }
+    ?>
+    <!-- /Botones submit -->
+    <!-- Campo accion -->
+    <input type="hidden" name="accion" id="accion" />
+    <!-- /Campo accion-->
+    <!-- Campo idSesion -->
+    <input type="hidden" name="idSesion" id="idSesion" value="<?php echo 1; ?>" />
+    <!-- /Campo idSesion -->
+    <!-- Campo tipousuario -->
+    <input type="hidden" name="tipoUsuario" id="tipoUsuario" value="<?php echo 1;?>" />
+    <!-- /Campo tipousuario -->
   </form>
-
-
-<script type="text/javascript">
+<script>
 function validarServicio(valor){
   if (document.formServicio.tipo.value == 3){
     document.getElementById("dormitorios").disabled = true;
@@ -247,9 +264,9 @@ function validarServicio(valor){
     document.getElementById("dormitorios").disabled = false;
     document.getElementById("banos").disabled = false;
     document.getElementById("estacionamientos").disabled = false;
-    document.formServicio.dormitorios.value = "";
-    document.formServicio.banos.value = "";
-    document.formServicio.estacionamientos.value = "";    
+    //document.formServicio.dormitorios.value = "";
+    //document.formServicio.banos.value = "";
+    //document.formServicio.estacionamientos.value = "";    
   }
   if (document.formServicio.tipo.value == 1){
     document.formServicio.titulo.placeholder = "Ej: Se vende casa...";
@@ -330,100 +347,109 @@ function validarServicio(valor){
       document.formServicio.submit();
     }else{
         if (!document.formServicio.titulo.value) {
-        alert("Debes ingresar un titulo para el servicio");
+        document.getElementById("informacion").value = "Falta el titulo";
         document.formServicio.titulo.focus();
         verificador=false;
       } else if (!document.formServicio.tipo.value) {
-        alert("Debes seleccionar una categoria para el servicio");
+        document.getElementById("informacion").value = "Falta elegir tipo";
         document.formServicio.tipo.focus();
         verificador=false;        
       } else if (!document.formServicio.introDescripcion.value) {
-        alert("Debes ingresar una descripción introductiva para el servicio");
+        document.getElementById("informacion").value = "Falta descripcion";
         document.formServicio.introDescripcion.focus();
         verificador=false;
       } else if (!document.formServicio.descripcion.value) {
-        alert("Debes ingresar una descripción del servicio");
+        document.getElementById("informacion").value = "Falta descripcion";
         document.formServicio.descripcion.focus();
         verificador=false;
       } else if (!document.formServicio.precio.value) {
-        alert("Debes ingresar un precio para el servicio");
+        document.getElementById("informacion").value = "Falta precio";
         document.formServicio.precio.focus();
         verificador=false;
       } else if (!document.formServicio.descuentoPrecio.value) {
-        alert("Debes ingresar un descuento para el precio, si no lo consideras pon un 0");
+        document.getElementById("informacion").value = "0 si no hay";
         document.formServicio.descuentoPrecio.value=0;
         document.formServicio.descuentoPrecio.focus();
         verificador=false;
       } else if (!document.formServicio.comuna.value) {
-        alert("Debes ingresar una comuna para el servicio");
+        document.getElementById("informacion").value = "Seleccione comuna";
         document.formServicio.comuna.focus();
         verificador=false;
       } else if (!document.formServicio.dormitorios.value) {
-        alert("Debes ingresar cantidad de dormitorios");
+        document.getElementById("informacion").value = "Indique cantidad";
         document.formServicio.dormitorios.focus();
         verificador=false;
-      }/* else if (!document.formServicio.foto.value) {
+      } else if (!document.formServicio.banos.value) {
+        document.getElementById("informacion").value = "Indique cantidad";
+        document.formServicio.banos.focus();
+        verificador=false;/* else if (!document.formServicio.foto.value) {
         alert("Debes incluír una foto en tu perfil");
         document.formServicio.foto.focus();
         verificador=false;
-      }*/else if (!document.formServicio.banos.value) {
-        alert("Debes indicar la cantidad de baños");
-        document.formServicio.banos.focus();
-        verificador=false;
+      }*/
       } else if (!document.formServicio.superficie.value) {
-        alert("Debes indicar la superficie del lugar.");
+        document.getElementById("informacion").value = "Indique tamaño";
         document.formServicio.superficie.focus();
         verificador=false;
       } else if (!document.formServicio.estacionamientos.value) {
-        alert("Debes indicar disponibilidad de estacionamientos");
+        document.getElementById("informacion").value = "Indique cantidad";
         document.formServicio.estacionamientos.focus();
         verificador=false;  
       } else if (!document.formServicio.imagen1.value) {
-        alert("Debes agregar un link para la imagen, de lo contrario ingresa un guión hasta que tengas uno.");
+        document.getElementById("informacion").value = "Falta esta foto";
+        document.formServicio.imagen1.value = "-";
         document.formServicio.imagen1.focus();
         verificador=false; 
       } else if (!document.formServicio.imagen2.value) {
-        alert("Debes agregar un link para la imagen, de lo contrario ingresa un guión hasta que tengas uno.");
+        document.getElementById("informacion").value = "Falta esta foto";
+        document.formServicio.imagen2.value = "-";
         document.formServicio.imagen2.focus();
         verificador=false; 
       } else if (!document.formServicio.imagen3.value) {
-        alert("Debes agregar un link para la imagen, de lo contrario ingresa un guión hasta que tengas uno.");
+        document.getElementById("informacion").value = "Falta esta foto";
+        document.formServicio.imagen3.value = "-";
         document.formServicio.imagen3.focus();
         verificador=false;  
       } else if (!document.formServicio.imagen4.value) {
-        alert("Debes agregar un link para la imagen, de lo contrario ingresa un guión hasta que tengas uno.");
+        document.getElementById("informacion").value = "Falta esta foto";
+        document.formServicio.imagen4.value = "-";
         document.formServicio.imagen4.focus();
         verificador=false; 
       } else if (!document.formServicio.imagen5.value) {
-        alert("Debes agregar un link para la imagen, de lo contrario ingresa un guión hasta que tengas uno.");
+        document.getElementById("informacion").value = "Falta esta foto";
+        document.formServicio.imagen5.value = "-";
         document.formServicio.imagen5.focus();
         verificador=false; 
       } else if (!document.formServicio.imagen6.value) {
-        alert("Debes agregar un link para la imagen, de lo contrario ingresa un guión hasta que tengas uno.");
+        document.getElementById("informacion").value = "Falta esta foto";
+        document.formServicio.imagen6.value = "-";
         document.formServicio.imagen6.focus();
         verificador=false;    
       } else if (!document.formServicio.imagen7.value) {
-        alert("Debes agregar un link para la imagen, de lo contrario ingresa un guión hasta que tengas uno.");
+        document.getElementById("informacion").value = "Falta esta foto";
+        document.formServicio.imagen7.value = "-";
         document.formServicio.imagen7.focus();
         verificador=false; 
       } else if (!document.formServicio.imagen8.value) {
-        alert("Debes agregar un link para la imagen, de lo contrario ingresa un guión hasta que tengas uno.");
+        document.formServicio.imagen8.value = "-";
         document.formServicio.imagen8.focus();
         verificador=false; 
       } else if (!document.formServicio.imagen9.value) {
-        alert("Debes agregar un link para la imagen, de lo contrario ingresa un guión hasta que tengas uno.");
+        document.getElementById("informacion").value = "Falta esta foto";
+        document.formServicio.imagen9.value = "-";
         document.formServicio.imagen9.focus();
         verificador=false;       
       } else if (!document.formServicio.imagen10.value) {
-        alert("Debes agregar un link para la imagen, de lo contrario ingresa un guión hasta que tengas uno.");
+        document.getElementById("informacion").value = "Falta esta foto";
+        document.formServicio.imagen10.value = "-";
         document.formServicio.imagen10.focus();
         verificador=false;                   
       } else if (!document.formServicio.fechaPublicacion.value) {
-        alert("Debes indicar una fecha para la publicación");
+        document.getElementById("informacion").value = "Seleccione fecha";
         document.formServicio.fechaPublicacion.focus();
         verificador=false; 
       } else if (!document.formServicio.horaPublicacion.value) {
-        alert("Debes indicar una hora para la publicación");
+        document.getElementById("informacion").value = "Seleccione hora";
         document.formServicio.horaPublicacion.focus();
         verificador=false; 
       }

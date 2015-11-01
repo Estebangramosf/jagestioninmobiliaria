@@ -168,9 +168,13 @@ if(isset($_SESSION["sesionActiva"]) && isset($_SESSION["sesionNombre"])){
           } */
 
 if($pagina=="Registro"){
-        echo '<article id="contento">
-        <input style="text-align:left;" readOnly="readonly" maxlength="500" name="informacion" type="text" placeholder="" class="form-control input-sm" id="informacion" value="" >            
-        </article>';
+        echo '        
+          <article id="contento">
+            <div class="input-group">
+              <span class="input-group-addon">INFO: </span>
+              <input style="text-align:left;" maxlength="500" name="informacion" readonly="readonly" type="text" onbLur="" class="form-control input-sm" id="informacion" value="-" >                              
+            </div>
+          </article>';
     }
 
           ?>
@@ -198,6 +202,9 @@ if($pagina=="Registro"){
     if (!document.formLogin.email.value) {
       document.formLogin.email.focus();
       pase=false;
+    }else if (!document.formLogin.password.value) {
+      document.formLogin.password.focus();
+      pase=false;      
     }else if (!document.formLogin.password.value) {
       document.formLogin.password.focus();
       pase=false;      

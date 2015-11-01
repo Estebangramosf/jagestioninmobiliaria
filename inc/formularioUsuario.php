@@ -56,7 +56,7 @@
                 <p class="help-block text-danger"></p>
               </article>      
               </fieldset>         
-              <!-- Campo numero movil -->
+              <!-- /Campo numero movil -->
               <article class="form-group">
                 <!-- Rut -->        
                 <input type="hidden" name="rut" id="rut" value="1-9"> 
@@ -156,7 +156,7 @@
         document.getElementById("informacion").value = "Las claves no coinciden";
         verificador=false;      
       } else if (!document.formUsuario.correo.value||document.formUsuario.correo.value) {
-          if (!expr.test(document.formUsuario.correo.value)  ) {
+          if (!expr.test(document.formUsuario.correo.value)) {
             document.formUsuario.correo.value="";
             document.formUsuario.correo.focus();
             document.getElementById("informacion").value = "Formato invalido";
@@ -166,6 +166,8 @@
               document.formUsuario.correo.focus();
               document.getElementById("informacion").value = "Correo requerido";
               verificador=false;              
+            }else{
+              document.getElementById("informacion").value = "-";
             }
           }
       } else if (!document.formUsuario.numerofono.value) {
@@ -179,7 +181,6 @@
       }        
     }
   }
-
   window.onload = function () {
     //document.getElementById("submitButton").onclick = validarDatosContacto(this.value);
   }

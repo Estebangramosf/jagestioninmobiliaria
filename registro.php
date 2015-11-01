@@ -33,9 +33,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <hr>
         <div style="" id="contentIn" class="">
           <div>
-            <?php 
-              include("inc/formularioUsuario.php");                   
-            ?>
+            <?php include("inc/formularioUsuario.php"); ?>
           </div>
         </div>
         <br>          
