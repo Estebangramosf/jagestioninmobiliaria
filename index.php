@@ -27,7 +27,7 @@
 </script>
 <div id="contentIn" class="container">  
   <article class="body">
-    <h2>- Novedades -</h2>
+    <h2>- Novedades (Presione la cruz para cerrar) -</h2>
     <hr>
   </article>
   <article id="" class="alert alert-default alert-dismissable">
