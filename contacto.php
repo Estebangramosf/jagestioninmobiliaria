@@ -45,6 +45,23 @@ return $url;
             <button class="btn btn-group-justified btn-success" id="submitButton">Enviar consulta</button>
           </div>
       </div>
-  </form>
-</div>     
+  </form>  
+</div>  
+<div id="contentIn">
+  <h2>Contacta con nuestra ejecutiva externa directamente</h2>
+  <table> 
+    <tr>
+      <td>Nombre :</td>  
+      <td>Daniela Polanco Castro</td>
+    </tr>
+    <tr>
+      <td>Tel&eacute;fono & Whatsapp :</td>  
+      <td>+56 9 7709 9930</td>
+    </tr>
+    <tr>
+      <td>Correo electr&oacute;nico</td>  
+      <td><a href="mailto:dapolancoc@ecomac.cl">dapolancoc@ecomac.cl</a></td>
+    </tr>        
+  </table>
+</div>   
 <?php include('inc/footer.php') ?>
