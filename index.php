@@ -44,7 +44,6 @@
       include("inc/detalleServicios.php");
       //este detalleServicios esta en las carpetas principales, en caso d modificar, revisar el de las carpetas management
     ?>
-  </div>
-  
+  </div>  
     <!-- /Index --> 
 <?php include('inc/footer.php') ?>
