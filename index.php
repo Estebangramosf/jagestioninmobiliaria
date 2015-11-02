@@ -5,7 +5,10 @@
     //header("Location:index.php");
   }
   if (isset($_REQUEST['gana'])){
-    echo '<script languaje="javascript">alert("ATENCION!:\nUsted ya se encuentra trabajando como Promotor.");</script>';
+    echo '<div class="alert alert-danger">Estimado cliente, ya es cliete promotor.</div>';
+  }
+  if (isset($_REQUEST['update'])){
+    echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Datos guardados correctamente.</h4></div>';
   }
   $tituloPagina = "Inicio";
   $pagina = "inicio";

@@ -50,7 +50,7 @@ switch($_REQUEST['accion']){
 												'".$_REQUEST['estadocivil']."',
 												'".$_REQUEST['tipousuario']."')";
 			mysqli_query($conexion, $sql);
-			header("Location:../index.php?registro=ok");	
+			header("Location:../login.php?exito");	
 	}else{
 		header("Location:../registro.php?error=1");
 	}	
@@ -109,7 +109,7 @@ switch($_REQUEST['accion']){
 		//}
 		//move_uploaded_file($tmp,"imagenes/".$nombre);
 		mysqli_query($conexion, $sql);
-		header("Location:../login.php?exito");		
+		header("Location:../index.php?update=ok");		
 		
 		break;	
 					
