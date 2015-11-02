@@ -7,7 +7,13 @@ if (isset($_SESSION['sesionActiva']) && $_SESSION['tipoSesion']=="100" || $_SESS
   $tituloPagina = "Panel";
   $pagina = "Panel";
   include('inc/header.php');
-  //include('inc/carousel.php') ?>
+  if(isset($_REQUEST['exito'])){ 
+    echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Datos guardados correctamente.</h4></div>';
+  }    
+  if(isset($_REQUEST['cancelado'])){ 
+    echo '<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Cancelado por el usuario.</h4></div>';
+  }     
+?>
         <!-- Panel -->
   <div id="content" class="container">
       <div class="row">

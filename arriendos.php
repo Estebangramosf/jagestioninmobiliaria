@@ -1,10 +1,10 @@
-<?php include('inc/funciones.php');?>
 <?php 
-$tituloPagina = "Arriendos";
-$pagina = "Arriendos";
-include('inc/header.php');
-//include('inc/carousel.php') ?>
-      <!-- Arriendos -->
+  include('inc/funciones.php');
+  $tituloPagina = "Arriendos";
+  $pagina = "Arriendos";
+  include('inc/header.php');
+?>
+<!-- Arriendos -->
 <div id="content" class="container">
     <div class="row">
       <article class="body">
@@ -13,6 +13,7 @@ include('inc/header.php');
       <hr>    
       <div class="horizontal divPadre">
         <div class="vertical">        
+          <!-- Div arriendo casa -->
           <div id="casa" >
             <a href="management/casas/arriendos-casas.php">
               <div id="info">
@@ -21,6 +22,8 @@ include('inc/header.php');
               </div>
             </a>  
           </div>
+          <!-- /Div arriendo casa -->
+          <!-- Div arriendo departamento -->
           <div id="departamento" >
             <a href="management/departamentos/arriendos-departamentos.php">
               <div id="info">
@@ -29,8 +32,9 @@ include('inc/header.php');
               </div>
             </a>  
           </div>        
+          <!-- /Div arriendo departamento -->
         </div>
       </div> 
     </div>        
-    <!-- /Arriendos --> 
+<!-- /Arriendos --> 
 <?php include('inc/footer.php') ?>

@@ -14,12 +14,10 @@ if (session_status() == PHP_SESSION_NONE) {
           <?php 
               if (isset($_REQUEST['error'])){
                 if ($_REQUEST['error']=="1"){
-                  //echo '<script languaje="javascript">alert("ESTIMADO CLIENTE, YA SE ENCUENTRA REGISTRADO");</script>';
                   echo '<div class="alert alert-danger">Estimado cliente, ya se encuentra registrado.</div>';
                 }
               }     
               if (isset($_REQUEST['gana-con-nosotros'])) {
-                //echo '<script>alert("ATENCION!:\n\nEstimado usuario:\nEsta seccion es solo para clientes registrados, invitamos a que te registres y seas participe!.");</script>';
                 echo '<div class="alert alert-info">Esta seccion es solo para clientes registrados, invitamos a que te registres y seas participe!.</div>';
                 /*
                   <div class="alert alert-success">...</div>

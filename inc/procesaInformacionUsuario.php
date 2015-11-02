@@ -109,7 +109,7 @@ switch($_REQUEST['accion']){
 		//}
 		//move_uploaded_file($tmp,"imagenes/".$nombre);
 		mysqli_query($conexion, $sql);
-		header("Location:../perfil.php?exito");		
+		header("Location:../login.php?exito");		
 		
 		break;	
 					
