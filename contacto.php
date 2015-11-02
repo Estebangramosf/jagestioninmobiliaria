@@ -18,6 +18,10 @@ return $url;
     </div>
   </div>
 	<br/> 
+  <div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h3>Estimado cliente:</h3><br><h4>Le tenemos un contacto externo de nuestro equipo, el cual brinda asesor&iacute;a para que pueda obtener su vivienda a trav&eacute;s de cr&eacute;dito 
+    hipotecario de forma a&aacute;pida y eficaz, <strong>no te pierdas esta oportunidad.</strong><br>Los datos los puedes encontrar a continuac&oacute;n del formulario de mas abajo.-</h3>
+  </div>
   <div id="contentIn">
     <form class="form" method="post" action="enviarporMail.php">
       <div class="form">
