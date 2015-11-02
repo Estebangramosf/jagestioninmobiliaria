@@ -21,6 +21,10 @@
       //Se concatena todo para tener mayor orden
       $salida = $salida . '<div class="col-md-4" align="center">';
       $salida = $salida . '<h2>' . $datos["srvc_titulo"] . '</h2>';
+      if (intval($datos["srvc_descuentoPrecio"])>0) {
+        //$salida = $salida . '<img src="img/listones/listonn.png" width=40% height=30% style="position:absolute; left:15%;"/>';
+        $salida = $salida . '<br><span style="color:green;">Precio en oferta</span>';
+      }         
       $i = $i + 1;
       $salida .= '<div id = "myGaleriaSrvc'.$i.'" class = "carousel slide " style="font-family: "Century Gothic"; text-shadow: black 3px 2px;">
                     <ol class = "carousel-indicators">                    
@@ -65,9 +69,6 @@
                     </a>
                   </div>';      
       //$salida = $salida . '<img src="'.$datos["srvc_imagen1"].'" class="img-rounded" width=65% height=65% />';
-      if (intval($datos["srvc_descuentoPrecio"])>0) {
-        $salida = $salida . '<img src="img/listones/listonn.png" width=40% height=30% style="position:absolute; left:15%;"/>';
-      }
       $salida = $salida . '<p>' . $datos['srvc_introDescripcion'] . '</p>';
       $salida = $salida . '<p><a href="../../gestion.php?id=' . $datos['srvc_id'] . '" role="button" class="btn-xs btn-info">Ver detalles</a></p>' . $modificar.$eliminar;
       if (isset($_SESSION['sesionActiva'])&&$_SESSION['tipoSesion']=="1") {

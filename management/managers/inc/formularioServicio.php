@@ -17,7 +17,6 @@ if(isset($_SESSION['sesionActiva'])){
       <p class="help-block text-danger"></p>
     </article>
     <!-- /Campo id -->
-
     <!-- Campo titulo del servicio -->  
     <article class="form-group col-md-12">
       <label>T&iacute;tulo del servicio</label>             
@@ -53,7 +52,7 @@ if(isset($_SESSION['sesionActiva'])){
             6=>"Region Metropolitana");
           for ($city=0;$city<7;$city++){                       
             ?>
-            <option id="comuna_<php echo $city; ?>"><?php echo $comunas[$city]; ?></option>';
+            <option <?php echo 'id="comuna_'.$city.'"';?>> <?php echo $comunas[$city]; ?></option>
           <?php }
         ?>                  
       </select>
@@ -89,7 +88,7 @@ if(isset($_SESSION['sesionActiva'])){
     <!-- /Campo precio -->
     <!-- Campo descuento -->
     <article class="form-group col-xs-12">
-      <label>Descuento $</label>              
+      <label>Descuento $ (indique 0 si no incluye)</label>              
       <input maxlength="12" name="descuentoPrecio" type="number" onbLur="validarServicio()" required="" class="form-control input-lg" id="descuentoPrecio" placeholder="Ej: 300000" data-validation-required-message="Ingrese descuento del servicio." value="" >
       <p class="help-block text-danger"></p>
     </article>          
@@ -147,12 +146,16 @@ if(isset($_SESSION['sesionActiva'])){
       for ($i=1;$i<=10;$i++) {
         echo  '
               <article class="form-group">
-                <label>Link Imagen N '.$i.'</label>              
-                <input maxlength="500" name="imagen'.$i.'" type="text" required="" onbLur="validarServicio()" class="form-control input-sm" id="imagen'.$i.'" placeholder="Link Imagen '.$i.' *" data-validation-required-message="Ingrese el link de la Imagen '.$i.'." value="" >
-                <p class="help-block text-danger"></p>
+                <label>Link Imagen N '.$i.'</label>
+                <div class="input-group">
+                  <span class="input-group-addon"><button onclick="alert("en desarrollo")">Seleccionar imagen</button></span>      
+                  <input maxlength="500" name="imagen'.$i.'" type="text" required="" onbLur="validarServicio()" class="form-control" id="imagen'.$i.'" placeholder="Link Imagen '.$i.' *" data-validation-required-message="Ingrese el link de la Imagen '.$i.'." value="" >
+                  <p class="help-block text-danger"></p>
+                </div> 
                 <input type="checkbox" name="sinImagen'.$i.'" id="sinImagen'.$i.'" value="sinImagen'.$i.'" class="checkbox-inline" onclick="validarSinImagen(this.value)" /> Sin imagen temporalmente.
                 <input type="checkbox" name="marcarRestantes" id="marcarRestantes'.$i.'" value="'.$i.'" class="checkbox-inline" onclick="marcarRestantesSinImagen(this.value)" /> Marcar restantes.                
               </article>   
+              <hr>
               '
         ;
       }

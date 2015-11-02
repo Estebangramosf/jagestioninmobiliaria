@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
 	session_start();
   if ($_SESSION['tipoSesion']=="10") {
     $tituloPagina = "Agregar Servicio";
-    $pagina = "venta";
+    $pagina = "ventas";
     include('inc/header.php');
       //include('inc/carousel.php') ?>
             <!-- Registro -->   
