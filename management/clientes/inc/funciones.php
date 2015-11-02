@@ -23,15 +23,16 @@ function portada($servicio_id, $servicio, $tipoServicio){
 	return $salida;
 }
 
-
 function conectaBase(){
 	//$conexion=mysql_connect("localhost","root","root") or die("Error en la Conexion del Motor de Bd".mysql_error());
 	//$base=mysql_select_db("jagi") or die("Error en la Conexion en la Base de Datos".mysql_error());
-}	$conexion=mysqli_connect("357384N","root","","jagi");
 /*
+}	$conexion=mysqli_connect("357384N","root","","jagi");
+	
 para la del hosting
-}	$conexion=mysqli_connect("mysql.hostinger.es","u443371958_jagi","jagi2015","u443371958_jagi");
 */
+}	$conexion=mysqli_connect("mysql.hostinger.es","u443371958_jagi","jagi2015","u443371958_jagi");
+
 
 
 function fecha_base($fecha)
