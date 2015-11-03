@@ -66,7 +66,7 @@
 </div>  
 <div id="contentIn" style="text-align:center;">
   <h3>Contacta con nuestra ejecutiva externa directamente</h3>
-  <table style="text-align=center;"> 
+  <table> 
     <tr>
       <td>Nombre :</td>  
       <td>Daniela Polanco Castro</td>
@@ -77,7 +77,7 @@
     </tr>
     <tr>
       <td>Correo electr&oacute;nico</td>  
-      <td><a class="btn btn-default" target="_blank" href="mailto:dapolancoc@ecomac.cl">dapolancoc@ecomac.cl</a></td>
+      <td><a class="btn btn-default" href="mailto:dapolancoc@ecomac.cl">dapolancoc@ecomac.cl</a></td>
     </tr>        
   </table>
 </div>   
