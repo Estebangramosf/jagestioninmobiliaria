@@ -3,13 +3,8 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
     $do = "";
   if(isset($_REQUEST['delete'])){
-    ?> 
-      <script languaje="javascript">
-          alert("Atención! está apunto de eliminar un producto, espere que sea dirigido y presione eliminar para confirmar");
-          $('body,html').animate({scrollTop: $(document).height(1200)}, 400);
-      </script>
-    <?php
-    $do = "yes";
+    echo '<div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Estimado Cliente:</h4><h3>Est&aacute; apunto de eliminar una publicaci&oacute;n, baje por el formulario y para confirmar la eliminaci&oacute;n presione <span clase="btn btn-danger btn-xs">Eliminar</span></h3></div>';
+    $do = "yes";    
   }
   if(isset($_REQUEST['cancelado'])){ 
     ?> <script languaje="javascript">alert("Acción cancelada");</script>" <?php
