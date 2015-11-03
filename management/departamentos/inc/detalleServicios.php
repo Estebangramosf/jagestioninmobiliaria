@@ -71,19 +71,15 @@
       //$salida = $salida . '<img src="'.$datos["srvc_imagen1"].'" class="img-rounded" width=65% height=65% />';
       $salida = $salida . '<p>' . $datos['srvc_introDescripcion'] . '</p>';
       $salida = $salida . '<p><a href="../../gestion.php?id=' . $datos['srvc_id'] . '" role="button" class="btn-xs btn-info">Ver detalles</a></p>' . $modificar.$eliminar;
-      if (isset($_SESSION['sesionActiva'])&&$_SESSION['tipoSesion']=="1") {
-        if ($datos['pk_srvc_tipoUsuario']==$_SESSION['tipoSesion']&&$datos['pk_srvc_idSesion']==$_SESSION['idSesion']) {
+      if (isset($_SESSION['sesionActiva'])&&($_SESSION['tipoSesion']=="1"||$_SESSION['tipoSesion']=="10")) {
+
+        if ($datos['pk_srvc_tipoUsuario']=='1') {
           $salida = $salida.'<br><small>(Publicado por: '.$datos['NombreManager'].')</small>';
         }else{
           $salida = $salida.'<br><small>(Publicado por: '.$datos['NombreCliente'].')</small>';
         }
-      }elseif (isset($_SESSION['sesionActiva'])&&$_SESSION['tipoSesion']=="10") {
-        if ($datos['pk_srvc_tipoUsuario']==$_SESSION['tipoSesion']&&$datos['pk_srvc_idSesion']==$_SESSION['idSesion']) {
-          $salida = $salida.'<br><small>(Publicado por: '.$datos['NombreCliente'].')</small>';
-        }else{
-          $salida = $salida.'<br><small>(Publicado por: '.$datos['NombreManager'].')</small>';
-        }
-      }  
+
+      }
       $salida = $salida . '</div>';
       // . '<strong> - Ahora:$' . $servicio["precioOferta"] . '</strong></a></p>'; 
       //$salida = $salida . '<p>Ahorras:$' . ($servicio["precio"]-$servicio["precioOferta"]) . '</p></div>';

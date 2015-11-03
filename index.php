@@ -14,14 +14,13 @@
   $pagina = "inicio";
   conectaBase();
 
-    $sql="SELECT srvc_id, srvc_titulo, srvc_introDescripcion, srvc_imagen1, srvc_imagen2, srvc_imagen3, srvc_descuentoPrecio, pk_srvc_idSesion, pk_srvc_tipoUsuario, CONCAT(cli_usuarios.cli_nombre, ' ', cli_usuarios.cli_apellido) AS NombreCliente, cli_usuarios.cli_tipousuario, CONCAT(ja_usuarios.ja_nombre, ' ', ja_usuarios.ja_apellido) AS NombreManager, ja_usuarios.ja_tipousuario  
-          FROM ja_servicios
-          INNER JOIN cli_usuarios
-          ON ja_servicios.pk_srvc_idSesion=cli_usuarios.cli_id
-          INNER JOIN ja_usuarios
-          ON ja_servicios.pk_srvc_idSesion=ja_usuarios.ja_id
-          ORDER BY srvc_id 
-          DESC LIMIT 0,9";
+  $sql="SELECT JS.srvc_id, JS.srvc_titulo, JS.srvc_introDescripcion, JS.srvc_imagen1, JS.srvc_imagen2, JS.srvc_imagen3, JS.srvc_descuentoPrecio, JS.pk_srvc_idSesion, JS.pk_srvc_tipoUsuario, CONCAT(CU.cli_nombre,' ',CU.cli_apellido) AS NombreCliente, CU.cli_tipoUsuario, CONCAT(JU.ja_nombre,' ',JU.ja_apellido) AS NombreManager, JU.ja_tipousuario
+        FROM (SELECT * FROM `ja_servicios`) AS JS
+        INNER JOIN cli_usuarios AS CU
+        ON JS.pk_srvc_idsesion=CU.cli_id
+        INNER JOIN ja_usuarios as JU
+        ORDER BY srvc_id 
+        DESC LIMIT 0,9";
   include('inc/header.php');
   include('inc/carousel.php'); 
 ?>

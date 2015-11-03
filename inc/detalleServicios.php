@@ -74,20 +74,15 @@ if (!isset($_SESSION['sesionActiva'])||isset($_SESSION['sesionActiva'])){
 
       $salida = $salida . '<p>' . $datos['srvc_introDescripcion'] . '</p>';
       $salida = $salida . '<p><a href="gestion.php?id=' . $datos['srvc_id'] . '" role="button" class="btn-xs btn-info">Ver detalles</a></p>' . $modificar.$eliminar;
+      if (isset($_SESSION['sesionActiva'])&&($_SESSION['tipoSesion']=="1"||$_SESSION['tipoSesion']=="10")) {
 
-      if (isset($_SESSION['sesionActiva'])&&$_SESSION['tipoSesion']=="1") {
-        if ($datos['pk_srvc_tipoUsuario']==$_SESSION['tipoSesion']&&$datos['pk_srvc_idSesion']==$_SESSION['idSesion']) {
+        if ($datos['pk_srvc_tipoUsuario']=='1') {
           $salida = $salida.'<br><small>(Publicado por: '.$datos['NombreManager'].')</small>';
         }else{
           $salida = $salida.'<br><small>(Publicado por: '.$datos['NombreCliente'].')</small>';
         }
-      }elseif (isset($_SESSION['sesionActiva'])&&$_SESSION['tipoSesion']=="10") {
-        if ($datos['pk_srvc_tipoUsuario']==$_SESSION['tipoSesion']&&$datos['pk_srvc_idSesion']==$_SESSION['idSesion']) {          
-          $salida = $salida.'<br><small>(Publicado por: '.$datos['NombreCliente'].')</small>';          
-        }else{
-          $salida = $salida.'<br><small>(Publicado por: '.$datos['NombreManager'].')</small>';          
-        }
-      }      
+
+      }  
       /*if (isset($_SESSION['sesionActiva']) &&
       $_SESSION['tipoSesion']==$datos['pk_srvc_tipoUsuario'] && 
       $_SESSION['idSesion']==$datos['pk_srvc_idSesion'] && 

@@ -162,68 +162,6 @@ if(isset($_SESSION['sesionActiva'])){
       }
     ?>    
     <!-- /Campo imagenes 1..10 -->
-    <!--     
-    <article class="form-group">
-      <label>Link Imagen N1</label>              
-      <input maxlength="500" name="imagen1" type="text" required="" class="form-control input-sm" id="imagen1" placeholder="Link Imagen 1 *" data-validation-required-message="Ingrese el link de la Imagen 1." value="" >
-      <p class="help-block text-danger"></p>
-      <input type="checkbox" name="sinImagen1" id="sinImagen1" value="sinImagen1" class="checkbox-inline" onclick="validarSinImagen(this.value)" /> Sin imagen temporalmente.
-    </article>       
-    <article class="form-group">
-      <label>Link Imagen N2</label>              
-      <input maxlength="500" name="imagen2" type="text" required="" class="form-control input-sm" id="imagen2" placeholder="Link Imagen 2 *" data-validation-required-message="Ingrese el link de la Imagen 2." value="" >
-      <p class="help-block text-danger"></p>
-      <input type="checkbox" name="sinImagen2" id="sinImagen2" value="sinImagen2" class="checkbox-inline" onclick="validarSinImagen(this.value)" /> Sin imagen temporalmente.
-    </article>  
-    <article class="form-group">
-      <label>Link Imagen N3</label>              
-      <input maxlength="500" name="imagen3" type="text" required="" class="form-control input-sm" id="imagen3" placeholder="Link Imagen 3 *" data-validation-required-message="Ingrese el link de la Imagen 3." value="" >
-      <p class="help-block text-danger"></p>
-      <input type="checkbox" name="sinImagen3" id="sinImagen3" value="sinImagen3" class="checkbox-inline" onclick="validarSinImagen(this.value)" /> Sin imagen temporalmente.
-    </article>
-    <article class="form-group">
-      <label>Link Imagen N4</label>              
-      <input maxlength="500" name="imagen4" type="text" required="" class="form-control input-sm" id="imagen4" placeholder="Link Imagen 4 *" data-validation-required-message="Ingrese el link de la Imagen 4." value="" >
-      <p class="help-block text-danger"></p>
-      <input type="checkbox" name="sinImagen4" id="sinImagen4" value="sinImagen4" class="checkbox-inline" onclick="validarSinImagen(this.value)" /> Sin imagen temporalmente.
-    </article>         
-    <article class="form-group">
-      <label>Link Imagen N5</label>              
-      <input maxlength="500" name="imagen5" type="text" required="" class="form-control input-sm" id="imagen5" placeholder="Link Imagen 5 *" data-validation-required-message="Ingrese el link de la Imagen 5." value="" >
-      <p class="help-block text-danger"></p>
-      <input type="checkbox" name="sinImagen5" id="sinImagen5" value="sinImagen5" class="checkbox-inline" onclick="validarSinImagen(this.value)" /> Sin imagen temporalmente.
-    </article>  
-    <article class="form-group">
-      <label>Link Imagen N6</label>              
-      <input maxlength="500" name="imagen6" type="text" required="" class="form-control input-sm" id="imagen6" placeholder="Link Imagen 6 *" data-validation-required-message="Ingrese el link de la Imagen 6." value="" >
-      <p class="help-block text-danger"></p>
-      <input type="checkbox" name="sinImagen6" id="sinImagen6" value="sinImagen6" class="checkbox-inline" onclick="validarSinImagen(this.value)" /> Sin imagen temporalmente.
-    </article>
-    <article class="form-group">
-      <label>Link Imagen N7</label>              
-      <input maxlength="500" name="imagen7" type="text" required="" class="form-control input-sm" id="imagen7" placeholder="Link Imagen 7 *" data-validation-required-message="Ingrese el link de la Imagen 7." value="" >
-      <p class="help-block text-danger"></p>
-      <input type="checkbox" name="sinImagen7" id="sinImagen7" value="sinImagen7" class="checkbox-inline" onclick="validarSinImagen(this.value)" /> Sin imagen temporalmente.
-    </article>       
-    <article class="form-group">
-      <label>Link Imagen N8</label>              
-      <input maxlength="500" name="imagen8" type="text" required="" class="form-control input-sm" id="imagen8" placeholder="Link Imagen 8 *" data-validation-required-message="Ingrese el link de la Imagen 8." value="" >
-      <p class="help-block text-danger"></p>
-      <input type="checkbox" name="sinImagen8" id="sinImagen8" value="sinImagen8" class="checkbox-inline" onclick="validarSinImagen(this.value)" /> Sin imagen temporalmente.
-    </article>  
-    <article class="form-group">
-      <label>Link Imagen N9</label>              
-      <input maxlength="500" name="imagen9" type="text" required="" class="form-control input-sm" id="imagen9" placeholder="Link Imagen 9 *" data-validation-required-message="Ingrese el link de la Imagen 9." value="" >
-      <p class="help-block text-danger"></p>
-      <input type="checkbox" name="sinImagen9" id="sinImagen9" value="sinImagen9" class="checkbox-inline" onclick="validarSinImagen(this.value)" /> Sin imagen temporalmente.
-    </article>    
-    <article class="form-group">
-      <label>Link Imagen N10</label>              
-      <input maxlength="500" name="imagen10" type="text" required="" class="form-control input-sm" id="imagen10" placeholder="Link Imagen 10 *" data-validation-required-message="Ingrese el link de la Imagen 10." value="" >
-      <p class="help-block text-danger"></p>
-      <input type="checkbox" name="sinImagen10" id="sinImagen10" value="sinImagen10" class="checkbox-inline" onclick="validarSinImagen(this.value)" > Sin imagen temporalmente.
-    </article>
-    -->      
     <!-- Botones submit -->
     <?php 
       if ($_SESSION["tipoSesion"]=="1"||$_SESSION["tipoSesion"]=="10"||$_SESSION["tipoSesion"]=="100"){
@@ -246,10 +184,10 @@ if(isset($_SESSION['sesionActiva'])){
     <input type="hidden" name="accion" id="accion" />
     <!-- /Campo accion-->
     <!-- Campo idSesion -->
-    <input type="hidden" name="idSesion" id="idSesion" value="<?php echo 1; ?>" />
+    <input type="hidden" name="idSesion" id="idSesion" value="<?php echo $_SESSION['idSesion']; ?>" />
     <!-- /Campo idSesion -->
     <!-- Campo tipousuario -->
-    <input type="hidden" name="tipoUsuario" id="tipoUsuario" value="<?php echo 1;?>" />
+    <input type="hidden" name="tipoUsuario" id="tipoUsuario" value="<?php echo $_SESSION['tipoSesion'];?>" />
     <!-- /Campo tipousuario -->
   </form>
 <script>
